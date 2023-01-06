@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" th:href="@{/css/film-forma.css}" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Film form</title>
+</head>
+<body>
+<div class="container">
+
+    <div id="naslov">
+        <h1>Cineplexx</h1></div>
+    <nav>
+        <ul class="pozadina">
+            <li><a th:href="@{/}">Dobrodošli</a></li>
+            <li><a th:href="@{/film/list}" >Repertoar</a></li>
+            <li><a th:href="@{/bioskop/list}" >Bioskopi</a></li>
+            <li><a th:href="@{/projekcija/list}" >Projekcije</a></li>
+        </ul>
+    </nav>
+
+
+    <h1 class="glavniNaslov">Film forma</h1>
+
+    <form style="margin-left:200px" action="#" th:action="@{/film/save}" th:object="${movie}" method="POST">
+
+        <input type="hidden" th:field="*{idfilm}" />
+        <input type="text" th:field="*{naziv}"
+               class="form-control mb-4 col-4" placeholder="Naziv">
+
+        <input type="text" th:field="*{glumci}"
+               class="form-control mb-4 col-4" placeholder="Glumci">
+
+        <input type="text" th:field="*{trajanje}"
+               class="form-control mb-4 col-4" placeholder="Trajanje">
+        <input type="text" th:field="*{ocena}"
+               class="form-control mb-4 col-4" placeholder="ocena">
+        <input type="text" th:field="*{zanr}"
+               class="form-control mb-4 col-4" placeholder="zanr">
+        <input type="text" th:field="*{opis}"
+               class="form-control mb-4 col-4" placeholder="Opis">
+        <input type="text" th:field="*{slika}"
+               class="form-control mb-4 col-4" placeholder="link do slike">
+
+        <button  style="background-color: #ff7300" type="submit" class="btn btn-info col-2">Sacuvaj</button>
+
+    </form>
+
+    <hr>
+
+        <a style="color: #ff7300; margin-left:200px" th:href="@{/film/list}">Vrati se da vidis sve filmove</a>
+
+</div>
+</body>
+</html>

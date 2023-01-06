@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet"th:href="@{/css/projekcije.css}" />
+
+    <title>Detail projekcija</title>
+</head>
+<body>
+<div id="naslov">
+    <h1>Cineplexx</h1></div>
+<nav>
+    <ul class="pozadina">
+        <li><a th:href="@{/}">Dobrodošli</a></li>
+        <li><a th:href="@{/film/list}" >Repertoar</a></li>
+        <li><a th:href="@{/bioskop/list}" >Bioskopi</a></li>
+        <li><a th:href="@{/projekcija/list}" >Projekcije</a></li>
+    </ul>
+</nav>
+
+
+<h1 class="glavniNaslov1">Detalji o bioskopu</h1>
+<div >
+    <div id="text" >
+        <div id="slika">
+            <img th:src="@{${project.film.slika}}" alt="p1"/>
+        </div>
+        <p th:text="${project.film.naziv}" />
+        <p th:text="'Trajanje filma: '+${project.film.trajanje}+'min'" />
+        <p th:text="'Sala:'+${project.sala.naziv}" />
+        <p th:text="'Datum :'+${project.datum}" />
+        <p th:text="'Vreme:'+${project.vreme}" />
+        <p th:text="'Broj mesta:'+${project.brojMesta}" />
+    </div>
+
+</div>
+</div>
+<br>
+<hr>
+<div id="link">
+    <a style="font-size: 20px" th:href="@{/projekcija/list}">Vrati se da vidis sve projekcije</a></div>
+<hr>
+
+<div id="admin">
+    <div class="naslov">
+        <h1>Admin panel</h1>
+
+        <p >
+            <a th:href="@{/projekcija/showFormForUpdate(idprojekcija=${project.idprojekcija})}">
+                Izmeni projekciju
+            </a>
+        </p>
+
+        <p > <a th:href="@{/projekcija/delete(idprojekcija=${project.idprojekcija})}"
+                onclick="if (!(confirm('Da li ste sigurni da zelite da obrisete ovu projekciju?'))) return false">
+            Obrisi  projekciju
+        </a></p>
+    </div>
+</div>
+
+</body>
+</html>

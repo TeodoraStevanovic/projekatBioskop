@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet"
+          th:href="@{/css/projekcije.css}" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <title>Nova projekcija</title>
+</head>
+<body>
+<div class="container">
+
+    <div id="naslov">
+        <h1>Cineplexx</h1></div>
+    <nav>
+        <ul class="pozadina">
+            <li><a th:href="@{/}">Dobrodošli</a></li>
+            <li><a th:href="@{/film/list}" >Repertoar</a></li>
+            <li><a th:href="@{/bioskop/list}" >Bioskopi</a></li>
+            <li><a th:href="@{/projekcija/list}" >Projekcije</a></li>
+        </ul>
+    </nav>
+
+
+    <h1 class="glavniNaslov">Film forma</h1>
+
+    <form style="margin-left:200px" action="#" th:action="@{/projekcija/save}" th:object="${project}" method="POST">
+          <input type="hidden" th:field="*{idprojekcija}" />
+
+     <input type="text" th:field="*{brojMesta}"
+                 class="form-control mb-4 col-5" placeholder="broj mesta">
+
+        <input type="date"  pattern="yyyy-MM-dd" th:field="*{datum}"
+               class="form-control mb-4 col-5" placeholder="datum projekcije">
+        <input type="time" th:field="*{vreme}"
+               class="form-control mb-4 col-5" placeholder="vreme projekcije">
+
+        <select class="form-control mb-4 col-5"  th:field="*{film}">
+            <option th:each="movie : ${movies}"
+                    th:value="${movie.getIdfilm()}"
+                    th:text="${movie.getNaziv()}"></option>
+        </select >
+
+        <select class="form-control mb-4 col-5"  th:field="*{sala}">
+            <option th:each="sala : ${sale}"
+                    th:value="${sala.idsala}"
+                    th:text="${sala.getNaziv()}+' - '+${sala.bioskop.nazivbioskopa}"></option>
+        </select>
+
+        <br>
+
+        <button  style="background-color: #ff7300" type="submit" class="btn btn-info col-4">Sacuvaj</button>
+
+    </form>
+
+    <hr>
+
+   <a style="color: #ff7300; margin-left:200px; font-size: 20px" th:href="@{/projekcija/list}">Vrati se da vidis sve projekcije</a>
+
+</div>
+
+</body>
+</html>

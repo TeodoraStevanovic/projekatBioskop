@@ -1,0 +1,106 @@
+body{background-image: url(https://i.pinimg.com/564x/8e/f3/f7/8ef3f7582ad5f99b05dc8a0e9e4af09a.jpg);
+    background-color: #ffffff; /* Used if the image is unavailable */
+    height: 500px; /* You must set a specified height */
+    background-position: center; /* Center the image */
+    background-repeat: repeat-y; /* Do not repeat the image */
+    background-size: 100%; /* Resize the background image to cover the entire container */
+}
+.naslov{
+    font-family: 'Galada', serif;
+    font-size: 20px;
+    text-align: center;
+    text-shadow: 2px 2px 0px rgb(145, 145, 145);
+    margin-bottom: 5px;
+    color: white;
+    margin-top: 20px;
+}
+nav{
+    background-color: grey;
+    opacity: 70%;
+    height: 80px;
+    width: 90%;
+    margin-left: 60px;
+}
+nav ul{
+    text-align: center;
+}
+nav  ul li{
+    display: inline-block;
+    line-height: 80px;
+    margin: 0 5px;
+
+}
+nav ul li a{
+    font-size: 25px;
+    padding: 15px 40px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    color: #e0dfdf;
+    text-decoration: none;
+}
+.pozadina a.active,
+.pozadina a:hover {
+    background-color: grey;
+    transition: .5s;
+}
+
+.glavniNaslov{
+    color: white;
+    font-family: 'Galada', serif;
+    text-align: center;
+    text-shadow: 2px 2px 0px rgb(173, 172, 172);
+    margin-bottom: 5px;
+
+}
+a{
+
+    color: #ff7300;
+    font-size: 25px;
+}
+#link{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-bottom: 100px;
+}
+#glavni{
+    margin: auto;
+    width: 70%;
+    border: 3px solid rgba(0, 0, 0, 0.51);
+    padding-left: 10px;
+    text-align: center;
+    background-color: #dddddd;
+    margin-bottom: 50px;
+    overflow:hidden
+
+
+}
+#text{
+    margin-left: 150px;
+    text-align: left;
+    padding-left: 25%;
+    padding-right: 25%;
+    position: relative;
+    width: 40%;
+}
+#slika{
+    text-align: left;
+    position: relative;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    float: left;
+}
+#admin p{
+    background-color: #bebdbd;
+    display:inline-block;
+    height: 50px;
+    width: 120px;
+    margin-left: 15px;
+    padding-top: 30px;
+
+}
+
+
+

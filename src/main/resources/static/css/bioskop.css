@@ -1,0 +1,65 @@
+body{background-image: url(https://i.pinimg.com/564x/8e/f3/f7/8ef3f7582ad5f99b05dc8a0e9e4af09a.jpg);
+    background-color: #ffffff; /* Used if the image is unavailable */
+    width: 100%;
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+    background-attachment: fixed;
+    position: sticky;
+
+
+}
+#naslov{
+    font-family: 'Galada', serif;
+    font-size: 20px;
+    text-align: center;
+    text-shadow: 2px 2px 0px rgb(145, 145, 145);
+    margin-bottom: 5px;
+    color: white;
+    margin-top: 20px;
+}
+.glavniNaslov{
+    color: white;
+    font-family: 'Galada', serif;
+    text-align: center;
+    text-shadow: 2px 2px 0px rgb(145, 145, 145);
+    margin-bottom: 5px;
+
+}
+nav{
+    background-color: grey;
+    opacity: 70%;
+    height: 80px;
+    width: 90%;
+    margin-left: 60px;
+}
+nav ul{
+    text-align: center;
+}
+nav  ul li{
+    display: inline-block;
+    line-height: 80px;
+    margin: 0 5px;
+
+}
+nav ul li a{
+    font-size: 25px;
+    padding: 15px 40px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    color: #e0dfdf;
+    text-decoration: none;
+}
+.pozadina a.active,
+.pozadina a:hover {
+    background-color: grey;
+    transition: .5s;
+}
+a{
+
+    color: #ff7300;
+    font-size: 25px;
+}
+a:hover{
+    color: white;
+}

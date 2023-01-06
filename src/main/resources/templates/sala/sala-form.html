@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+      <title>Nova sala</title>
+</head>
+<body>
+<div class="container">
+
+  <div id="naslov">
+    <h1>Cineplexx</h1></div>
+  <nav>
+    <ul class="pozadina">
+      <li><a th:href="@{/}">Dobrodošli</a></li>
+      <li><a th:href="@{/film/list}" >Repertoar</a></li>
+      <li><a th:href="@{/bioskop/list}" >Bioskopi</a></li>
+      <li><a th:href="@{/projekcija/list}" >Projekcije</a></li>
+    </ul>
+  </nav>
+
+
+  <h1 class="glavniNaslov">Sala forma</h1>
+
+  <form style="margin-left:200px" action="#" th:action="@{/sala/save}" th:object="${sala}" method="POST">
+
+    <input type="hidden" th:field="*{idsala}" />
+    <input type="hidden" th:field="*{bioskop.idbioskop}" />
+    <input type="text" th:field="*{naziv}"
+           class="form-control mb-4 col-4" placeholder="Naziv sale ">
+    <input type="text" th:field="*{kapacitet}"
+           class="form-control mb-4 col-4" placeholder="kapacitet ">
+
+
+    <button  style="background-color: #ff7300" type="submit" class="btn btn-info col-2">Sacuvaj</button>
+
+  </form>
+
+  <hr>
+
+  <a style="color: #ff7300; margin-left:200px" th:href="@{/bioskop/showDetail(idbioskop=${sala.bioskop.idbioskop})}">Vrati se da vidis sve o bioskopu</a>
+
+</div>
+
+</body>
+</html>

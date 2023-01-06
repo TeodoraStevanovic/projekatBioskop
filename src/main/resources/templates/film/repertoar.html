@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Repertoar!</title>
+    <link rel="stylesheet" th:href="@{/css/repertoar.css}" />
+</head>
+<body>
+<div id="naslov">
+    <h1>Cineplexx</h1></div>
+    <nav>
+        <ul class="pozadina">
+            <li><a th:href="@{/}">Dobrodošli</a></li>
+            <li><a th:href="@{/film/list}" >Repertoar</a></li>
+            <li><a th:href="@{/bioskop/list}" >Bioskopi</a></li>
+            <li><a th:href="@{/projekcija/list}" >Projekcije</a></li>
+
+        </ul>
+    </nav>
+    <h1 class="glavniNaslov">Repertoar</h1>
+    <!--ovde treba da se prikazu svi filmovi-->
+<br>
+<div class="dugmeDodaj">
+<a th:href="@{/film/showFormAdd}">
+    Dodaj  Film
+</a></div>
+        <table >
+
+            <tr th:each="tempMovie : ${movies}">
+            <td th:text="${tempMovie.naziv}" />
+
+              <td th:text="${tempMovie.glumci}" />
+             <td th:text="'Trajanje '+${tempMovie.trajanje}+' min'" />
+              <td th:text="'Ocena: '+${tempMovie.ocena}" />
+              <td th:text="${tempMovie.zanr}" />
+                <td th:text="${tempMovie.opis}" />
+                <td>
+                   <div class="detaljnije"> <a  th:href="@{/film/showDetail(idfilm=${tempMovie.idfilm})}" >
+                        DETALJNIJE
+                    </a></div></td>
+            </tr>
+
+        </table>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+body{background-image: url(https://i.pinimg.com/564x/b1/38/23/b138239923d7eb2c68a9007976808fda.jpg);
+
+    background-color: #ffffff; /* Used if the image is unavailable */
+    height: 500px; /* You must set a specified height */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Do not repeat the image */
+    background-size: cover; /* Resize the background image to cover the entire container */
+}
+#naslov{
+    font-family: 'Galada', serif;
+    font-size: 20px;
+    text-align: center;
+    text-shadow: 2px 2px 0px rgb(145, 145, 145);
+    margin-bottom: 5px;
+    color: white;
+    margin-top: 20px;
+}
+nav{
+    background-color: grey;
+    opacity: 70%;
+    height: 80px;
+    width: 90%;
+    margin-left: 60px;
+}
+nav ul{
+    text-align: center;
+}
+nav  ul li{
+    display: inline-block;
+    line-height: 80px;
+    margin: 0 5px;
+
+}
+nav ul li a{
+    font-size: 25px;
+    padding: 15px 40px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    color: #e0dfdf;
+    text-decoration: none;
+}
+.pozadina a.active,
+.pozadina a:hover {
+    background-color: grey;
+    transition: .5s;
+}

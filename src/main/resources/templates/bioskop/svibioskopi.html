@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+  <link rel="stylesheet"
+        th:href="@{/css/bioskop.css}" />
+    <title>Lista svih bioskopa</title>
+</head>
+<body>
+<div class="naslov">
+  <h1>Cineplexx</h1></div>
+<nav>
+  <ul class="pozadina">
+    <li><a th:href="@{/}">Dobrodošli</a></li>
+    <li><a th:href="@{/film/list}" >Repertoar</a></li>
+    <li><a th:href="@{/bioskop/list}" >Bioskopi</a></li>
+    <li><a th:href="@{/projekcija/list}" >Projekcije</a></li>
+  </ul>
+</nav>
+
+<h1 class="glavniNaslov">Bioskop</h1>
+
+<br>
+<div class="dugmeDodaj">
+  <a th:href="@{/bioskop/showFormAdd}">
+    Dodaj Bioskop
+  </a></div>
+<br>
+<table>
+
+  <tr th:each="tempCinema : ${cinemas}">
+    <td th:text="${tempCinema.nazivbioskopa}" />
+
+    <td th:text="'Adresa: '+${tempCinema.adresa}" />
+    <td th:text="${tempCinema.telefon}" />
+    <td>
+      <div class="detaljnije"> <a  th:href="@{/bioskop/showDetail(idbioskop=${tempCinema.idbioskop})}" >DETALJNIJE
+
+      </a></div></td>
+
+
+  </tr>
+
+</table>
+</body>
+</html>

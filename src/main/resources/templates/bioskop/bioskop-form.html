@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet"
+          th:href="@{/css/bioskop.css}" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <title>Bioskop form</title>
+</head>
+<body>
+<div class="container">
+
+    <div id="naslov">
+        <h1>Cineplexx</h1></div>
+    <nav>
+        <ul class="pozadina">
+            <li><a th:href="@{/}">Dobrodošli</a></li>
+            <li><a th:href="@{/film/list}" >Repertoar</a></li>
+            <li><a th:href="@{/bioskop/list}" >Bioskopi</a></li>
+            <li><a th:href="@{/projekcija/list}" >Projekcije</a></li>
+        </ul>
+    </nav>
+
+
+    <h1 class="glavniNaslov">Bioskop forma</h1>
+
+    <form style="margin-left:200px" action="#" th:action="@{/bioskop/save}" th:object="${cinema}" method="POST">
+
+
+        <input type="hidden" th:field="*{idbioskop}" />
+
+        <input type="text" th:field="*{nazivbioskopa}"
+               class="form-control mb-4 col-4" placeholder="Naziv bioskopa">
+
+        <input type="text" th:field="*{adresa}"
+               class="form-control mb-4 col-4" placeholder="adresa">
+
+        <input type="text" th:field="*{telefon}"
+               class="form-control mb-4 col-4" placeholder="telefon">
+
+        <!-- ovde mora da se doda nova sala-->
+
+
+
+        <button  style="background-color: #ff7300" type="submit" class="btn btn-info col-2">Sacuvaj</button>
+
+    </form>
+
+    <hr>
+
+    <a style="color: #ff7300; margin-left:200px" th:href="@{/bioskop/list}">Vrati se da vidis sve bioskope</a>
+
+</div>
+
+</body>
+</html>

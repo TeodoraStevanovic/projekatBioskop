@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet"
+          th:href="@{/css/projekcije.css}" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <title>Projekcije</title>
+</head>
+<body>
+<div id="naslov">
+    <h1>Cineplexx</h1></div>
+<nav>
+    <ul class="pozadina">
+        <li><a th:href="@{/}">Dobrodošli</a></li>
+        <li><a th:href="@{/film/list}" >Repertoar</a></li>
+        <li><a th:href="@{/bioskop/list}" >Bioskopi</a></li>
+        <li><a th:href="@{/projekcija/list}" >Projekcije</a></li>
+
+    </ul>
+</nav>
+<h1 class="glavniNaslov">Repertoar</h1>
+
+<br>
+<div class="dugmeDodaj">
+    <a style="color: #ff7300" th:href="@{/projekcija/showFormAdd}">
+        Dodaj  Projekciju
+    </a></div>
+<br>
+
+<hr>
+<div class="container">
+<form style="margin-left:200px" action="#" th:action="@{/projekcija/listProjekcije}" th:object="${noviBioskop}" method="GET">
+Odaberi bioskop:
+    <br>
+    <div class="row">
+    <select class="form-control mb-4 col-6" th:field="*{idbioskop}" >
+        <option th:each="cinema : ${cinemas}"
+                th:value="${cinema.idbioskop}"
+
+                th:text="${cinema.nazivbioskopa}"></option>
+    </select>
+
+    <button  style="background-color: #ff7300; margin-left: 100px" type="submit" class="btn btn-info mb-4 col-4">Prikazi sve projekcije </button></div>
+</form></div>
+<hr>
+<table >
+
+    <tr th:each="tempProjekcija : ${projekcije}">
+        <td th:text="${tempProjekcija.film.naziv}" />
+        <td th:text="${tempProjekcija.film.trajanje}+' min'" />
+
+        <td th:text="${tempProjekcija.datum}" />
+
+        <td th:text="${tempProjekcija.vreme}" />
+        <td th:text="${tempProjekcija.sala.naziv}" />
+        <td>
+            <div class="detaljnije"> <a  style="color: #ff7300" th:href="@{/projekcija/showDetail(idprojekcija=${tempProjekcija.idprojekcija})}" >
+                DETALJNIJE
+            </a></div></td>
+    </tr>
+
+</table>
+
+
+
+</body>
+</html>
