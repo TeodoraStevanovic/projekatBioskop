@@ -10,6 +10,7 @@ public class RegistrationForm {
 
     private String username;
     private String password;
+    private String password1;
     private String ime;
     private String prezime;
     private String email;
@@ -18,6 +19,6 @@ public class RegistrationForm {
 
     public User toUser(PasswordEncoder passwordEncoder) {
         return new User(email,username,passwordEncoder.encode(password),
-                ime, prezime, brojtelefona,"ROLE_USER");
+                ime, prezime, brojtelefona,"USER");
     }
 }
