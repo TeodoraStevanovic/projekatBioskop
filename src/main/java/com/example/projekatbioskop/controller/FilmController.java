@@ -4,6 +4,7 @@ package com.example.projekatbioskop.controller;
 
 import com.example.projekatbioskop.model.Film;
 import com.example.projekatbioskop.service.FilmService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
@@ -39,6 +40,7 @@ public class FilmController {
         return "film/repertoar";
     }
 
+
     @GetMapping("/showDetail")
     public String showDetail(@RequestParam("idfilm") int theId, Model theModel) {
 
@@ -51,6 +53,7 @@ public class FilmController {
         // send over to our form
         return "film/film-detail";
     }
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/showFormForUpdate")
     public String showFormForUpdate(@RequestParam("idfilm") int theId,Model theModel) {
         Film theMovie = filmService.findById(theId);
@@ -58,11 +61,13 @@ public class FilmController {
         // send over to our form
         return "film/film-form";
     }
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/delete")
     public String delete(@RequestParam("idfilm") int theId) {
         filmService.deleteById(theId);
         return "redirect:/film/list";
     }
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/save")
     public String saveEmployee( @ModelAttribute("movie") Film theMovie) {
 //, Errors errors
@@ -74,6 +79,7 @@ public class FilmController {
     }
 
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/showFormAdd")
     public String showFormAdd(Model theModel) {
 

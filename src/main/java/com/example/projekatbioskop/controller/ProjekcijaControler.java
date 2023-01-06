@@ -7,6 +7,7 @@ import com.example.projekatbioskop.service.*;
 import com.example.projekatbioskop.service.FilmService;
 import com.example.projekatbioskop.service.ProjekcijaService;
 import com.example.projekatbioskop.service.SalaService;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -61,6 +62,7 @@ public class ProjekcijaControler {
        theModel.addAttribute("projekcije", projekcije);
         return "projekcija/projekcije";
     }
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/showFormAdd")
     public String showFormAdd(Model theModel) {
         Projekcija projekcija = new Projekcija();
@@ -72,6 +74,7 @@ public class ProjekcijaControler {
         return "projekcija/projekcija-form";
     }
 
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/showFormForUpdate")
     public String showFormForUpdate(@RequestParam("idprojekcija") int theId, Model theModel) {
         Projekcija theProjekcija = projekcijaService.findById(theId);
@@ -84,11 +87,13 @@ public class ProjekcijaControler {
         // send over to our form
         return "projekcija/projekcija-form";
     }
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/save")
     public String saveCinema(@ModelAttribute("project") Projekcija projekcija) {
         projekcijaService.save(projekcija);
         return "redirect:/projekcija/list";
     }
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/delete")
     public String delete(@RequestParam("idprojekcija") int theId) {
         projekcijaService.deleteById(theId);

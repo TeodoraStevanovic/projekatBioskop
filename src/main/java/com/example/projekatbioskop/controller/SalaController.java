@@ -3,6 +3,7 @@ package com.example.projekatbioskop.controller;
 import com.example.projekatbioskop.model.Bioskop;
 import com.example.projekatbioskop.model.Sala;
 import com.example.projekatbioskop.service.*;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +35,7 @@ public class SalaController {
 
         return "film/repertoar";
     }
-
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/showFormAdd")
     public String showFormAdd(@RequestParam("idbioskop") int theId, Model theModel) {
         Sala sala = new Sala();
@@ -45,7 +46,7 @@ public class SalaController {
         theModel.addAttribute("sala", sala);
         return "sala/sala-form";
     }
-
+    @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/save")
     public String saveSala( @ModelAttribute("sala") Sala theSala) {
         int idBioskopa = theSala.getBioskop().getIdbioskop();
@@ -57,7 +58,7 @@ public class SalaController {
         return "redirect:/bioskop/list";
     }
 
-
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/showFormForUpdate")
     public String showFormForUpdate(@RequestParam("salaid") int theId, Model theModel) {
         Sala theSala = salaService.findById(theId);
@@ -66,7 +67,7 @@ public class SalaController {
         return "sala/sala-form";
     }
 
-
+    @PreAuthorize("hasAuthority('ADMIN')")
     @GetMapping("/delete")
     public String delete(@RequestParam("salaid") int theId) {
         salaService.deleteById(theId);
