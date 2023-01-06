@@ -1,4 +1,4 @@
-package com.example.projekatbioskop.controller;
+package com.example.projekatbioskop.model.controller;
 
 
 import com.example.projekatbioskop.model.Bioskop;

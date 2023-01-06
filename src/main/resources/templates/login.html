@@ -13,11 +13,7 @@
 <br>
 
 
-    <div th:if ="${logout}">
-
-            You have been logged out.
-
-    </div>
+    <div th:if ="${param.logout}">You have been logged out.</div>
 <p>Nemas nalog? Klikni <a  style="color: #ff7300" th:href="@{/register}">ovde</a> da se registrujes.</p>
 
 <form  method="POST" th:action="@{/login}" id="loginForm">

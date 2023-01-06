@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
 
@@ -9,6 +9,7 @@
     <title>Detail projekcija</title>
 </head>
 <body>
+<div  sec:authorize="isAuthenticated()">
 <div id="naslov">
     <h1>Cineplexx</h1></div>
 <nav>
@@ -45,7 +46,7 @@
     <a style="font-size: 20px" th:href="@{/projekcija/list}">Vrati se da vidis sve projekcije</a></div>
 <hr>
 
-<div id="admin">
+<div id="admin"   sec:authorize="hasAuthority('ADMIN')">
     <div class="naslov">
         <h1>Admin panel</h1>
 
@@ -61,6 +62,6 @@
         </a></p>
     </div>
 </div>
-
+</div>
 </body>
 </html>

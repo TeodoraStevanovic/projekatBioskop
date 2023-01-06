@@ -1,5 +1,5 @@
 <!DOCTYPE HTML>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
     <meta charset="utf-8">
@@ -8,6 +8,7 @@
     <link rel="stylesheet" th:href="@{/css/repertoar.css}" />
 </head>
 <body>
+<div sec:authorize="isAuthenticated()">
 <div id="naslov">
     <h1>Cineplexx</h1></div>
     <nav>
@@ -23,7 +24,8 @@
     <h1 class="glavniNaslov">Repertoar</h1>
     <!--ovde treba da se prikazu svi filmovi-->
 <br>
-<div class="dugmeDodaj">
+
+<div class="dugmeDodaj" sec:authorize="hasAuthority('ADMIN')">
 <a th:href="@{/film/showFormAdd}">
     Dodaj  Film
 </a></div>
@@ -44,6 +46,6 @@
             </tr>
 
         </table>
-
+</div>
 </body>
 </html>

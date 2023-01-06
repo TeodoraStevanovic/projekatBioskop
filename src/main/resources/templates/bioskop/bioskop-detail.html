@@ -1,13 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" th:href="@{/css/bioskop-detalji.css}" />
-    <link rel="stylesheet"
-          th:href="@{/css/bioskop.css}" />
+
     <title>Bioskop </title>
 </head>
 <body>
+<div sec:authorize="isAuthenticated()">
 <div class="naslov">
     <h1>Cineplexx</h1></div>
 <nav>
@@ -37,6 +37,7 @@
                     <!-- Add update button/link -->
                     <td>
                     <td class="nazivSale" th:text="${tempSala.kapacitet}" />
+                    <div  sec:authorize="hasAuthority('ADMIN')">
                     <!-- Add update button/link -->
                     <td>
                         <a th:href="@{/sala/showFormForUpdate(salaid=${tempSala.idsala})}">
@@ -46,6 +47,7 @@
                             onclick="if (!(confirm('Da li ste sigurni da zelite da obrisete ovu salu?'))) return false">
                         delete
                     </a></td>
+                    </div>
                 </tr>
 
             </table>
@@ -54,7 +56,7 @@
 
 </div>
 <br>
-<div class="dugmeDodaj">
+<div class="dugmeDodaj"  sec:authorize="hasAuthority('ADMIN')">
     <a th:href="@{/sala/showFormAdd(idbioskop=${cinema.idbioskop})}">
         Dodaj Salu
     </a></div>
@@ -63,13 +65,13 @@
     <a th:href="@{/bioskop/list}">Vrati se da vidis sve bioskope</a></div>
 <hr>
 
-<div id="admin">
+<div id="admin"  sec:authorize="hasAuthority('ADMIN')">
     <div class="naslov">
         <h1>Admin panel</h1>
 
         <p >
             <a th:href="@{/bioskop/showFormForUpdate(idbioskop=${cinema.idbioskop})}">
-                Izmeni film
+                Izmeni bioskop
             </a>
         </p>
 
@@ -79,6 +81,6 @@
         </a></p>
     </div>
 </div>
-
+</div>
 </body>
 </html>

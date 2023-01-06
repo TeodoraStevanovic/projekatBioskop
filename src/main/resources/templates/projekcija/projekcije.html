@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -9,6 +9,7 @@
     <title>Projekcije</title>
 </head>
 <body>
+<div sec:authorize="isAuthenticated()">
 <div id="naslov">
     <h1>Cineplexx</h1></div>
 <nav>
@@ -24,7 +25,7 @@
 <h1 class="glavniNaslov">Repertoar</h1>
 
 <br>
-<div class="dugmeDodaj">
+<div class="dugmeDodaj" sec:authorize="hasAuthority('ADMIN')">
     <a style="color: #ff7300" th:href="@{/projekcija/showFormAdd}">
         Dodaj  Projekciju
     </a></div>
@@ -65,6 +66,6 @@ Odaberi bioskop:
 </table>
 
 
-
+</div>
 </body>
 </html>

@@ -1,5 +1,7 @@
-package com.example.projekatbioskop.controller;
+package com.example.projekatbioskop.model.controller;
 
+import com.example.projekatbioskop.security.CustomUserDetails;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/login")
 public class LoginController {
-//@AuthenticationPrincipal CustomUserDetails loggedUser
+//
     @GetMapping
-    public String login(){
+    public String login(@AuthenticationPrincipal CustomUserDetails loggedUser){
         return "login";
     }
 

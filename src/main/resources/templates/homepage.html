@@ -20,5 +20,20 @@
         </ul>
     </nav>
 </div>
+
+<div align="right" style="margin-top: 100px; margin-right: 100px; font-size: 35px; color: #919191; font-family: 'Curlz MT'">
+  <u>Trenutno ulogovan korisnik</u>
+    <br>
+   <!-- <span th:text="'Ime :'${#authentication.getPrincipal().getUser().getIme()}"></span>
+    <span th:text="'Prezime :'${#authentication.getPrincipal().getUser().getPrezime()}"></span>
+    <span th:text="'Korisnicki ime :'${#authentication.getPrincipal().getUser().getUsername()}"></span>
+    <span th:text="'Email :'+${#authentication.getPrincipal().getUser().getEmail()}"></span>
+    <span th:text="'Broj telefona :'${#authentication.getPrincipal().getUser().getBrojTelefona()}"></span>
+    <span th:text="'Uloga :'${#authentication.getPrincipal().getUser().getUloga()}"></span>
+-->
+    <span th:text="'Korisnicko ime: '+${#authentication.getPrincipal().getUsername()}"></span>
+    <br>
+    <span th:text="'Uloga: '+${#authentication.getPrincipal().authorities}"></span>
+</div>
 </body>
 </html>

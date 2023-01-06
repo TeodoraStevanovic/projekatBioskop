@@ -9,22 +9,22 @@
     <title>Nova projekcija</title>
 </head>
 <body>
+<div id="naslov">
+    <h1>Cineplexx</h1></div>
+<nav>
+    <ul class="pozadina">
+        <li><a th:href="@{/}">Dobrodošli</a></li>
+        <li><a th:href="@{/film/list}" >Repertoar</a></li>
+        <li><a th:href="@{/bioskop/list}" >Bioskopi</a></li>
+        <li><a th:href="@{/projekcija/list}" >Projekcije</a></li>
+        <li> <a  th:href="@{/logout}">Odjavi se</a></li>
+    </ul>
+</nav>
+
+
+<h1 class="glavniNaslov">Film forma</h1>
 <div class="container">
 
-    <div id="naslov">
-        <h1>Cineplexx</h1></div>
-    <nav>
-        <ul class="pozadina">
-            <li><a th:href="@{/}">Dobrodošli</a></li>
-            <li><a th:href="@{/film/list}" >Repertoar</a></li>
-            <li><a th:href="@{/bioskop/list}" >Bioskopi</a></li>
-            <li><a th:href="@{/projekcija/list}" >Projekcije</a></li>
-            <li> <a  th:href="@{/logout}">Odjavi se</a></li>
-        </ul>
-    </nav>
-
-
-    <h1 class="glavniNaslov">Film forma</h1>
 
     <form style="margin-left:200px" action="#" th:action="@{/projekcija/save}" th:object="${project}" method="POST">
           <input type="hidden" th:field="*{idprojekcija}" />
