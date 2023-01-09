@@ -2,12 +2,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" th:href="@{/css/bioskop-detalji.css}" />
 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/css/bioskop-detalji.css}" />
     <title>Bioskop </title>
 </head>
-<body>
-<div sec:authorize="isAuthenticated()">
+<body sec:authorize="isAuthenticated()">
+
 <div class="naslov">
     <h1>Cineplexx</h1></div>
 <nav>
@@ -16,9 +17,11 @@
         <li><a th:href="@{/film/list}" >Repertoar</a></li>
         <li><a th:href="@{/bioskop/list}" >Bioskopi</a></li>
         <li><a th:href="@{/projekcija/list}" >Projekcije</a></li>
+        <li sec:authorize="hasAuthority('ADMIN')"> <a  th:href="@{/admin}">Admin</a></li>
         <li> <a  th:href="@{/logout}">Odjavi se</a></li>
     </ul>
 </nav>
+<div class="container">
 
 
 <h1 class="glavniNaslov">Detalji o bioskopu</h1>
@@ -36,7 +39,7 @@
                    <td class="nazivSale" th:text="${tempSala.naziv}" />
                     <!-- Add update button/link -->
                     <td>
-                    <td class="nazivSale" th:text="${tempSala.kapacitet}" />
+                    <td class="kapacitet" th:text="${tempSala.kapacitet}" />
                     <div  sec:authorize="hasAuthority('ADMIN')">
                     <!-- Add update button/link -->
                     <td>
@@ -66,19 +69,15 @@
 <hr>
 
 <div id="admin"  sec:authorize="hasAuthority('ADMIN')">
-    <div class="naslov">
+    <div class="naslovAdmin">
         <h1>Admin panel</h1>
 
         <p >
-            <a th:href="@{/bioskop/showFormForUpdate(idbioskop=${cinema.idbioskop})}">
-                Izmeni bioskop
-            </a>
+            <a th:href="@{/bioskop/showFormForUpdate(idbioskop=${cinema.idbioskop})}">Izmeni bioskop</a>
         </p>
 
         <p > <a th:href="@{/bioskop/delete(idbioskop=${cinema.idbioskop})}"
-                onclick="if (!(confirm('Da li ste sigurni da zelite da obrisete ovaj bioskop?'))) return false">
-            Obrisi  bioskop
-        </a></p>
+                onclick="if (!(confirm('Da li ste sigurni da zelite da obrisete ovaj bioskop?'))) return false">Obrisi bioskop</a></p>
     </div>
 </div>
 </div>

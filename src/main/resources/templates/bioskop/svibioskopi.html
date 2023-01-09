@@ -2,12 +2,13 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-  <link rel="stylesheet"
-        th:href="@{/css/bioskop.css}" />
+  <link rel="stylesheet" th:href="@{/css/bioskop.css}" />
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
     <title>Lista svih bioskopa</title>
 </head>
-<body>
-<div sec:authorize="isAuthenticated()">
+<body sec:authorize="isAuthenticated()">
+
 <div class="naslov">
   <h1>Cineplexx</h1></div>
 <nav>
@@ -16,6 +17,7 @@
     <li><a th:href="@{/film/list}" >Repertoar</a></li>
     <li><a th:href="@{/bioskop/list}" >Bioskopi</a></li>
     <li><a th:href="@{/projekcija/list}" >Projekcije</a></li>
+    <li sec:authorize="hasAuthority('ADMIN')"> <a  th:href="@{/admin}">Admin</a></li>
     <li> <a  th:href="@{/logout}">Odjavi se</a></li>
   </ul>
 </nav>
@@ -24,7 +26,7 @@
 
 <br>
 <div class="dugmeDodaj"  sec:authorize="hasAuthority('ADMIN')">
-  <a th:href="@{/bioskop/showFormAdd}">
+  <a style="color: #ff7300" th:href="@{/bioskop/showFormAdd}">
     Dodaj Bioskop
   </a></div>
 <br>
@@ -36,13 +38,14 @@
     <td th:text="'Adresa: '+${tempCinema.adresa}" />
     <td th:text="${tempCinema.telefon}" />
     <td>
-      <div class="detaljnije"> <a  th:href="@{/bioskop/showDetail(idbioskop=${tempCinema.idbioskop})}" >DETALJNIJE
+      <div class="detaljnije"> <a style="color: #ff7300" th:href="@{/bioskop/showDetail(idbioskop=${tempCinema.idbioskop})}" >DETALJNIJE
 
       </a></div></td>
 
 
   </tr>
 
-</table></div>
+</table>
+
 </body>
 </html>

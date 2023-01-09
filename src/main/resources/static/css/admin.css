@@ -6,23 +6,8 @@ body{background-image: url(https://i.pinimg.com/564x/8e/f3/f7/8ef3f7582ad5f99b05
     background-size: cover; /* Resize the background image to cover the entire container */
     background-attachment: fixed;
     position: sticky;
-}
-.glavniNaslov{
-    color: white;
-    font-family: 'Galada', serif;
-    text-align: center;
-    text-shadow: 2px 2px 0px rgb(173, 172, 172);
-    margin-bottom: 15px;
-}
 
-.naslov{
-    font-family: 'Galada', serif;
-    font-size: 20px;
-    text-align: center;
-    text-shadow: 2px 2px 0px rgb(145, 145, 145);
-    margin-bottom: 5px;
-    color: white;
-    margin-top: 20px;
+
 }
 #naslov{
     font-family: 'Galada', serif;
@@ -33,6 +18,15 @@ body{background-image: url(https://i.pinimg.com/564x/8e/f3/f7/8ef3f7582ad5f99b05
     color: white;
     margin-top: 20px;
 }
+.glavniNaslov{
+    color: white;
+    font-family: 'Galada', serif;
+    text-align: center;
+    text-shadow: 2px 2px 0px rgb(173, 172, 172);
+    margin-bottom: 5px;
+
+}
+
 nav{
     background-color: grey;
     opacity: 70%;
@@ -62,52 +56,3 @@ nav ul li a{
     background-color: grey;
     transition: .5s;
 }
-
-#link{
-    width: 50%;
-    font-size: 25px;
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
-    margin-bottom: 100px;
-}
-#glavni{
-    margin: auto;
-    width: 70%;
-    border: 3px solid rgba(0, 0, 0, 0.51);
-    padding-left: 10px;
-    text-align: center;
-    background-color: #dddddd;
-    margin-bottom: 50px;
-    overflow:hidden
-
-
-}
-#text{
-    margin-left: 15px;
-    margin-top: 15px;
-    text-align: left;
-    position: relative;
-    width: 38%;
-}
-#slika{
-    text-align: left;
-    position: relative;
-    width: 50%;
-    height: 100%;
-    display: flex;
-    float: left;
-}
-#admin p{
-    background-color: #bebdbd;
-    display:inline-block;
-    height: 50px;
-    width: 120px;
-    margin-left: 15px;
-    padding-top: 15px;
-    padding-bottom: 15px;
-
-}
-
-
-

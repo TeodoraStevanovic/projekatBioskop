@@ -2,13 +2,15 @@
 
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <title>Film</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" th:href="@{/css/film-detalji.css}" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <title>Film</title>
+
 </head>
-<body>
-<div sec:authorize="isAuthenticated()">
-<div class="naslov">
+<body sec:authorize="isAuthenticated()">
+<div id="naslov">
 <h1>Cineplexx</h1></div>
 <nav>
     <ul class="pozadina">
@@ -16,17 +18,18 @@
         <li><a th:href="@{/film/list}" >Repertoar</a></li>
         <li><a th:href="@{/bioskop/list}" >Bioskopi</a></li>
         <li><a th:href="@{/projekcija/list}" >Projekcije</a></li>
+        <li sec:authorize="hasAuthority('ADMIN')"> <a  th:href="@{/admin}">Admin</a></li>
         <li> <a  th:href="@{/logout}">Odjavi se</a></li>
     </ul>
 </nav>
 
-
     <h1 class="glavniNaslov">Detalji o filmu</h1>
-    <div id="glavni" >
-        <div id="slika">
+
+    <div id="glavni" class="d-flex flex-nowrap" >
+        <div class="order-1 p-2" id="slika">
     <img th:src="@{${movie.slika}}" alt="p1"/>
-        </div>
-        <div id="text">
+        </div >
+        <div class="order-2 p-2" id="text">
             <p th:text="'Naziv: '+${movie.naziv}" />
             <p th:text="'Glumci: '+${movie.glumci}" />
             <p th:text="'Trajanje: '+${movie.trajanje}+' min'" />
@@ -41,7 +44,7 @@
 <!--ovde treba da se dodaju sve projekcije za jedan film  -->
 <hr>
 <div id="link">
-    <a th:href="@{/film/list}">Vrati se da vidis sve filmove</a></div>
+    <a style="color: #ff7300" th:href="@{/film/list}">Vrati se da vidis sve filmove</a></div>
     <hr>
 
     <div id="admin" sec:authorize="hasAuthority('ADMIN')">
@@ -49,17 +52,17 @@
             <h1>Admin panel</h1>
 
         <p >
-            <a th:href="@{/film/showFormForUpdate(idfilm=${movie.idfilm})}">
+            <a style="color: #ff7300" th:href="@{/film/showFormForUpdate(idfilm=${movie.idfilm})}">
                 Izmeni film
             </a>
         </p>
 
-        <p > <a th:href="@{/film/delete(idfilm=${movie.idfilm})}"
+        <p > <a style="color: #ff7300" th:href="@{/film/delete(idfilm=${movie.idfilm})}"
                 onclick="if (!(confirm('Da li ste sigurni da zelite da obrisete ovaj film?'))) return false">
            Obrisi  film
         </a></p>
     </div>
 </div>
-</div>
+
 </body>
 </html>

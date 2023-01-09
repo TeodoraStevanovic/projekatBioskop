@@ -1,7 +1,12 @@
 .nazivSale{
     background-color: rgba(227, 225, 225, 0.69);
-    text-align: center;
+    text-align: left;
     color: #ff7300;
+}
+.kapacitet{
+    background-color: rgba(227, 225, 225, 0.69);
+    text-align: center;
+    color: rgba(0, 0, 0, 0.57);
 }
 
 body{background-image: url(https://i.pinimg.com/564x/8e/f3/f7/8ef3f7582ad5f99b05dc8a0e9e4af09a.jpg);
@@ -29,7 +34,7 @@ body{background-image: url(https://i.pinimg.com/564x/8e/f3/f7/8ef3f7582ad5f99b05
     font-family: 'Galada', serif;
     text-align: center;
     text-shadow: 2px 2px 0px rgb(145, 145, 145);
-    margin-bottom: 5px;
+    margin-bottom: 25px;
 
 }
 nav{
@@ -61,19 +66,11 @@ nav ul li a{
     background-color: grey;
     transition: .5s;
 }
-a{
-
-    color: #ff7300;
-    font-size: 25px;
-}
-a:hover{
-    color: white;
-}
 
 table{
     color:white ;
    margin-left: 100px;
-    margin-bottom: 100px;
+    margin-bottom: 75px;
 }
 
 .dugmeDodaj{
@@ -81,7 +78,7 @@ table{
     font-size: 20px;
     color:white;
     width: 15%;
-    background-color: rgba(173, 172, 172, 0.7);
+    background-color: rgba(173, 172, 172, 0.28);
     border: grey;
     margin-left: auto;
     margin-right: auto;
@@ -89,7 +86,7 @@ table{
 }
 
 td{
-    font-size: 15px;
+    font-size: 19px;
     height: 50px;
     border-bottom: 1px solid #ddd;
     padding-left: 10px;
@@ -98,19 +95,44 @@ td{
 
 
 #admin p{
-    background-color: #bebdbd;
+    background-color: rgba(173, 172, 172, 0.28);
     display:inline-block;
     height: 50px;
-    width: 120px;
-    margin-left: 15px;
-    padding-top: 30px;
+    width: 150px;
+    margin-left: 25px;
+    padding-top: 15px;
     padding-bottom: 10px;
+
+}
+#admin a{
+    font-size: 20px;
 
 }
 #text{
     margin-left: 100px;
     text-align: left;
-
     position: relative;
     width: 40%;
+    font-size: 15px;
+}
+a{
+    color: #ff7300;
+}
+#link{
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 20px;
+}
+
+.naslovAdmin{
+    font-family: 'Galada', serif;
+    font-size: 25px;
+    text-align: center;
+    text-shadow: 2px 2px 0px rgb(145, 145, 145);
+    margin-bottom: 15px;
+    color: white;
+    margin-top: 20px;
 }

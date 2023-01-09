@@ -1,9 +1,11 @@
 body{background-image: url(https://i.pinimg.com/564x/b1/38/23/b138239923d7eb2c68a9007976808fda.jpg);
     background-color: #ffffff; /* Used if the image is unavailable */
-    height: 500px; /* You must set a specified height */
+    width: 100%;
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Do not repeat the image */
     background-size: cover; /* Resize the background image to cover the entire container */
+    background-attachment: fixed;
+    position: sticky;
 }
 #naslov{
     font-family: 'Galada', serif;

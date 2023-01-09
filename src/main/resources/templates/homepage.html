@@ -1,25 +1,24 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Dobrodosli!</title>
   <link rel="stylesheet"
         th:href="@{/css/homepage.css}" />
 </head>
-<body>
-<div id="naslov">
-<h1>Cineplexx</h1>
+<body sec:authorize="isAuthenticated()">
+<div id="naslov"><h1>Cineplexx</h1></div>
     <nav>
         <ul class="pozadina">
             <li><a th:href="@{/}">Dobrodošli</a></li>
             <li><a th:href="@{/film/list}" >Repertoar</a></li>
             <li><a th:href="@{/bioskop/list}" >Bioskopi</a></li>
             <li><a th:href="@{/projekcija/list}" >Projekcije</a></li>
+            <li sec:authorize="hasAuthority('ADMIN')"> <a  th:href="@{/admin}">Admin</a></li>
                 <li> <a  th:href="@{/logout}">Odjavi se</a></li>
 
         </ul>
     </nav>
-</div>
 
 <div align="right" style="margin-top: 100px; margin-right: 100px; font-size: 35px; color: #919191; font-family: 'Curlz MT'">
   <u>Trenutno ulogovan korisnik</u>

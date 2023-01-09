@@ -6,10 +6,9 @@ body{background-image: url(https://i.pinimg.com/564x/8e/f3/f7/8ef3f7582ad5f99b05
     background-size: cover; /* Resize the background image to cover the entire container */
     background-attachment: fixed;
     position: sticky;
-
-
 }
-.naslov{
+
+#naslov{
     font-family: 'Galada', serif;
     font-size: 20px;
     text-align: center;
@@ -18,14 +17,8 @@ body{background-image: url(https://i.pinimg.com/564x/8e/f3/f7/8ef3f7582ad5f99b05
     color: white;
     margin-top: 20px;
 }
-.glavniNaslov{
-    color: white;
-    font-family: 'Galada', serif;
-    text-align: center;
-    text-shadow: 2px 2px 0px rgb(145, 145, 145);
-    margin-bottom: 5px;
 
-}
+
 nav{
     background-color: grey;
     opacity: 70%;
@@ -55,14 +48,24 @@ nav ul li a{
     background-color: grey;
     transition: .5s;
 }
-a{
+.glavniNaslov{
+     color: white;
+     font-family: 'Galada', serif;
+     text-align: center;
+     text-shadow: 2px 2px 0px rgb(173, 172, 172);
+     margin-bottom: 25px;
 
-    color: #ff7300;
-    font-size: 25px;
-}
-a:hover{
+ }
+.naslov{
+    font-family: 'Galada', serif;
+    font-size: 20px;
+    text-align: center;
+    text-shadow: 2px 2px 0px rgb(145, 145, 145);
+    margin-bottom: 5px;
     color: white;
+    margin-top: 20px;
 }
+
 
 table{
     color:white ;
@@ -95,5 +98,15 @@ td{
 tr{
     background-color: rgba(0, 0, 0, 0.37);
     border-bottom: 1px solid #ddd;
+
+}
+
+.detaljnije{
+    color: black;
+    background-color: #919191;
+    height: 50px;
+    width: 100px;
+    margin-right: 20px;
+    text-align: center;
 
 }
