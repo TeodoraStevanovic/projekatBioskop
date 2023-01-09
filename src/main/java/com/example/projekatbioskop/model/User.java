@@ -1,8 +1,10 @@
 package com.example.projekatbioskop.model;
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name="users")
+@Table(name="user")
 public class User  {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
@@ -124,5 +126,26 @@ public class User  {
 
     public void setUloga(String uloga) {
         this.uloga = uloga;
+    }
+
+
+    @OneToMany(mappedBy="user", cascade = CascadeType.MERGE )
+    private List<Rezervacija> rezervacije;
+
+
+    public List<Rezervacija> getRezervacije() {
+        return rezervacije;
+    }
+
+    public void setRezervacije(List<Rezervacija> rezervacije) {
+        this.rezervacije = rezervacije;
+    }
+
+    public void add(Rezervacija rezervacija) {
+        if (rezervacije == null) {
+            rezervacije = new ArrayList<>();
+        }
+        rezervacije.add(rezervacija);
+        rezervacija.setUser(this);
     }
 }

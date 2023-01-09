@@ -33,7 +33,6 @@
 
             <tr th:each="tempMovie : ${movies}">
             <td th:text="${tempMovie.naziv}" />
-
               <td th:text="${tempMovie.glumci}" />
              <td th:text="'Trajanje '+${tempMovie.trajanje}+' min'" />
               <td th:text="'Ocena: '+${tempMovie.ocena}" />

@@ -1,6 +1,7 @@
-package com.example.projekatbioskop.model.controller;
+package com.example.projekatbioskop.controller;
 
 import com.example.projekatbioskop.model.Bioskop;
+import com.example.projekatbioskop.model.Projekcija;
 import com.example.projekatbioskop.model.Sala;
 import com.example.projekatbioskop.service.*;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -16,10 +18,12 @@ public class SalaController {
 
     private SalaService salaService;
     private BioskopService bioskopService;
+    private ProjekcijaService projekcijaService;
 
-    public SalaController(SalaService salaService, BioskopService bioskopService) {
+    public SalaController(SalaService salaService, BioskopService bioskopService, ProjekcijaService projekcijaService) {
         this.salaService = salaService;
         this.bioskopService = bioskopService;
+        this.projekcijaService=projekcijaService;
     }
 
     @GetMapping("/list")
@@ -51,6 +55,21 @@ public class SalaController {
     public String saveSala( @ModelAttribute("sala") Sala theSala) {
         int idBioskopa = theSala.getBioskop().getIdbioskop();
         Bioskop theCinema = bioskopService.findById(idBioskopa);
+        //makon toga nadji sve postojece projekcije za taj bioskop
+        //nadji sve projekcije za bioskop
+        List<Projekcija> projekcije=projekcijaService.findAll();
+        List<Projekcija> projekcijeZaIzmenu = new ArrayList<>();
+
+        for (Projekcija p: projekcije) {
+            if(p.getSala().getIdsala()==theSala.getIdsala())
+            {projekcijeZaIzmenu.add(p);}
+
+        }
+        for (Projekcija g: projekcijeZaIzmenu) {
+g.setBrojMesta(theSala.getKapacitet());
+g.setPreostaoBrojMesta(theSala.getKapacitet());
+        }
+
         System.out.println(theCinema);
         theSala.setBioskop(theCinema);
 

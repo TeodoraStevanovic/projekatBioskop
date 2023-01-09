@@ -30,7 +30,9 @@
           <input type="hidden" th:field="*{idprojekcija}" />
 
      <input type="text" th:field="*{brojMesta}"
-                 class="form-control mb-4 col-5" placeholder="broj mesta">
+                 class="form-control mb-4 col-5" placeholder="broj mesta" readonly>
+        <input type="text" th:field="*{preostaoBrojMesta} "
+               class="form-control mb-4 col-5" placeholder="broj mesta" readonly>
 
         <input type="date"  pattern="yyyy-MM-dd" th:field="*{datum}"
                class="form-control mb-4 col-5" placeholder="datum projekcije">

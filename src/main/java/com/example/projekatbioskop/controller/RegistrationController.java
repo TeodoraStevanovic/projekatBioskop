@@ -1,4 +1,4 @@
-package com.example.projekatbioskop.model.controller;
+package com.example.projekatbioskop.controller;
 
 
 import com.example.projekatbioskop.security.RegistrationForm;

@@ -144,7 +144,20 @@ a:hover {
 }
 
 #link{
-    width: 50%;
+    width: 30%;
    margin: auto;
     text-align: center;
+}
+
+#rezervacija{
+    width: 50%;
+    margin: auto;
+    text-align: center;
+    background-color: #ff7300;
+
+}
+#rezervacija a{
+    font-family: "Courier New";
+    color: white;
+    font-size: 20px;
 }

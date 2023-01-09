@@ -31,13 +31,21 @@
         </div>
         <p th:text="${project.film.naziv}" />
         <p th:text="'Trajanje filma: '+${project.film.trajanje}+'min'" />
+        <p th:text="'Bioskop:'+${project.sala.bioskop.nazivbioskopa}" />
         <p th:text="'Sala:'+${project.sala.naziv}" />
         <p th:text="'Datum :'+${project.datum}" />
         <p th:text="'Vreme:'+${project.vreme}" />
-        <p th:text="'Broj mesta:'+${project.brojMesta}" />
+        <p th:text="'Ukupan broj mesta:'+${project.brojMesta}" />
+        <p th:text="'Preostao broj mesta:'+${project.preostaoBrojMesta}" />
         <br>
     </div>
 <!-- ovde dodaj dugme za rezervaciju-->
+    <br>
+    <p id="rezervacija" th:if="${project.preostaoBrojMesta>0}"> <a   th:href="@{/rezervacija/save(idprojekcija=${project.idprojekcija})}"
+            onclick="if (!(confirm('Da li ste sigurni da zelite da rezervisete ovu projekciju?'))) return false">
+        Rezervisi ovu projekciju
+    </a></p>
+    <p style="color: blue; font-size: 25px; font-style: italic; text-align: center" th:if="${project.preostaoBrojMesta==0}">Nema vise slobodnih mesta za ovu projekciju!</p>
 </div>
 </div>
 <br>
@@ -56,7 +64,7 @@
             </a>
         </p>
 
-        <p > <a th:href="@{/projekcija/delete(idprojekcija=${project.idprojekcija})}"
+        <p > <a   th:href="@{/projekcija/delete(idprojekcija=${project.idprojekcija})}"
                 onclick="if (!(confirm('Da li ste sigurni da zelite da obrisete ovu projekciju?'))) return false">
             Obrisi  projekciju
         </a></p>

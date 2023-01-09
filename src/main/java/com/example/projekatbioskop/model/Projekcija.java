@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name="projekcija")
@@ -15,7 +17,7 @@ public class Projekcija {
     @Column(name="idprojekcija")
     private int idprojekcija;
 
-
+//ukupan broj mesta
     @Column(name="brojmesta")
     private int brojMesta;
 
@@ -26,8 +28,8 @@ public class Projekcija {
 
     @Column(name="vreme")
     private String vreme;
-
-
+@Column(name="preostao_broj_mesta")
+private int preostaoBrojMesta;
     @ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
             CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name="idfilm")
@@ -102,11 +104,42 @@ public class Projekcija {
                 '}';
     }
 
-    public Projekcija(int idprojekcija, int brojMesta, Date datum, String vreme, Film film, Sala sala) {
-        this.idprojekcija = idprojekcija;
+
+
+    @OneToMany(mappedBy="projekcija",
+            cascade = CascadeType.MERGE    )
+    private List<Rezervacija> rezervacije;
+
+
+    public List<Rezervacija> getRezervacije() {
+        return rezervacije;
+    }
+
+    public void setRezervacije(List<Rezervacija> rezervacije) {
+        this.rezervacije = rezervacije;
+    }
+
+    public void add(Rezervacija rezervacija) {
+        if (rezervacije == null) {
+            rezervacije = new ArrayList<>();
+        }
+        rezervacije.add(rezervacija);
+        rezervacija.setProjekcija(this);
+    }
+
+    public int getPreostaoBrojMesta() {
+        return preostaoBrojMesta;
+    }
+
+    public void setPreostaoBrojMesta(int preostaoBrojMesta) {
+        this.preostaoBrojMesta = preostaoBrojMesta;
+    }
+
+    public Projekcija(int brojMesta, Date datum, String vreme, int preostaoBrojMesta, Film film, Sala sala) {
         this.brojMesta = brojMesta;
         this.datum = datum;
         this.vreme = vreme;
+        this.preostaoBrojMesta = preostaoBrojMesta;
         this.film = film;
         this.sala = sala;
     }

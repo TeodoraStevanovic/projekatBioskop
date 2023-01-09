@@ -1,4 +1,4 @@
-package com.example.projekatbioskop.model.controller;
+package com.example.projekatbioskop.controller;
 
 
 import com.example.projekatbioskop.model.Bioskop;
@@ -43,7 +43,7 @@ public class ProjekcijaControler {
         return "projekcija/projekcije";
     }
     @GetMapping("/listProjekcije")
-    public String list(Model theModel,@ModelAttribute("noviBioskop") Bioskop bioskop1) {
+    public String listProjekcijeZaBioskop(Model theModel,@ModelAttribute("noviBioskop") Bioskop bioskop1) {
         //
         List<Bioskop> bioskopi =bioskopService.findAll();
         theModel.addAttribute("cinemas", bioskopi);
@@ -90,6 +90,8 @@ public class ProjekcijaControler {
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/save")
     public String saveCinema(@ModelAttribute("project") Projekcija projekcija) {
+        projekcija.setBrojMesta(projekcija.getSala().getKapacitet());
+        projekcija.setPreostaoBrojMesta(projekcija.getSala().getKapacitet());
         projekcijaService.save(projekcija);
         return "redirect:/projekcija/list";
     }
