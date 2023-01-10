@@ -52,7 +52,13 @@ public class UserServiceImpl implements UserService {
         return userRepository.findByUsername(username);
     }
 
-
+    @Override
+    public List<User> searchUsersByUsernameIsContainingIgnoreCase(String username) {
+        if(username!=null) {
+            return userRepository.searchUsersByUsernameIsContainingIgnoreCase(username);
+        }
+        return (List<User>) userRepository.findAll();
+    }
 
 
     //keiraj user-a?

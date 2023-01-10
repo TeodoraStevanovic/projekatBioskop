@@ -50,7 +50,6 @@ public class RezervacijaController {
       //  return "projekcija/projekcija-form";
   //  }
 
-
     @RequestMapping("/save")
     public String saveRezervacija(@AuthenticationPrincipal CustomUserDetails loggedUser, @RequestParam("idprojekcija") int theId) {
         Rezervacija rezervacija=new Rezervacija();

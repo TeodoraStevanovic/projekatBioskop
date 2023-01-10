@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+  <link rel="stylesheet" th:href="@{/css/admin.css}" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>Admin page</title>
+</head>
+<body sec:authorize="isAuthenticated()">
+
+<div id="naslov">
+  <h1>Cineplexx</h1></div>
+  <nav>
+    <ul class="pozadina">
+      <li><a th:href="@{/static}">Dobrodošli</a></li>
+      <li><a th:href="@{/film/list}" >Repertoar</a></li>
+      <li><a th:href="@{/bioskop/list}" >Bioskopi</a></li>
+      <li><a th:href="@{/projekcija/list}" >Projekcije</a></li>
+      <li sec:authorize="hasAuthority('ADMIN')"> <a  th:href="@{/admin}">Admin</a></li>
+      <li> <a  th:href="@{/logout}">Odjavi se</a></li>
+
+
+    </ul>
+  </nav>
+  <h1 class="glavniNaslov">Admin strana</h1>
+
+<table  th:if="${users.size()>0}" >
+  <h2 style="text-align: left; margin-left: 75px;margin-bottom: 20px;">Korisnici:</h2>
+  <!--pretraga-->
+
+  <form  action="#" th:action="@{/admin/search}"  >
+    <div class="form-row" style="margin-left: 75px;" >
+      <div class="col-4">
+    <input  class="form-control " type="text" th:value="${username}" th:name="username" placeholder="username" ></div>
+      <div class="col-4">
+    <button style="color: #ffffff;font-size: 18px;background-color: rgba(255,115,0,0.49) " type="submit" class="btn col-5">Nadji</button></div>
+    </div>
+  </form>
+<p style="margin-left: 75px; font-family: 'Courier New'; font-size: 17px; color: #ff7300;" th:if="${poruka==true}">Ne postoji korisnik sa zadatim username-om!</p>
+    <tr th:each="user : ${users}">
+       <td  th:text="${user.ime}+' '+${user.prezime}" />
+      <td  th:text="'Username: '+${user.username}" />
+      <td th:text="'Broj telefona: '+${user.brojTelefona}" />
+      <td th:text="'Email: '+${user.email}" />
+      <td th:text="'Uloga: '+${user.uloga}" />
+      <!--izmeni usera-->
+      <td ><a style="color: #ff7300" th:href="@{/admin/showFormForUpdate(iduser=${user.iduser})}">Izmeni</a></td>
+      <!--obrisi usera-->
+      <td > <a style="color: #ff7300" th:href="@{/admin/deleteUser(iduser=${user.iduser})}"
+              onclick="if (!(confirm('Da li ste sigurni da zelite da obrisete ovog korisnika?'))) return false">Obrisi</a></td>
+    </tr>
+  </table>
+
+
+<div id="rezervacije" style="margin-bottom: 100px;">
+
+  <table  th:if="${rezervations.size()>0}" >
+    <h2 style="text-align: left; margin-left: 75px;margin-bottom: 20px; margin-top: 50px;">Sve rezervacije:</h2>
+
+    <tr th:each="rezervation : ${rezervations}">
+      <td  th:text="'Korisnik: '+${rezervation.user.username}" />
+
+      <td th:text="${rezervation.projekcija.sala.bioskop.nazivbioskopa}" />
+      <td th:text="'Sala: '+${rezervation.projekcija.sala.naziv}" />
+      <td th:text="'Film: '+${rezervation.projekcija.film.naziv}" />
+     <b><td th:text="${rezervation.projekcija.datum}" /></b>
+      <b> <td th:text="${rezervation.projekcija.vreme}" /></b>
+      <td  th:text="'Placed at: '+${rezervation.placedAt}" />
+
+      <!--izmeni rezervaciju
+      <td ><a style="color: #ff7300" th:href="@{/admin/showFormForUpdateReservation(id=${rezervation.idrezervacija})}">Izmeni</a></td>-->
+      <!--obrisi rezervaciju-->
+      <td > <a style="color: #ff7300" th:href="@{/admin/deleteReservation(id=${rezervation.idrezervacija})}"
+               onclick="if (!(confirm('Da li ste sigurni da zelite da obrisete ovu rezervacijju?'))) return false">Obrisi</a></td>
+    </tr>
+  </table>
+</div>
+</body>
+</html>
