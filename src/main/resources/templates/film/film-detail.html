@@ -42,6 +42,18 @@
 </div>
 <hr>
 <!--ovde treba da se dodaju sve projekcije za jedan film  -->
+
+<div th:if="${projects.size()>0}" class="d-flex flex-row justify-content-around">
+    <div id="projekcije"  class="p-2" th:each="project : ${projects}">
+       <b> <p th:text="${project.sala.bioskop.nazivbioskopa}" /></b>
+        <p th:text="${project.sala.naziv}" />
+        <p th:text="${project.datum}" />
+        <p th:text="${project.vreme}" />
+    </div>
+</div>
+<div th:if="${projects.size()==0}" >
+    <p  STYLE="color: #666969; font-size: 20px; text-align: center">Nema zakazanih projekcija za ovaj film! USKORO!</p>
+</div>
 <hr>
 <div id="link">
     <a style="color: #ff7300" th:href="@{/film/list}">Vrati se da vidis sve filmove</a></div>
