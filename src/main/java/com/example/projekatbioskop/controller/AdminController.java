@@ -67,6 +67,8 @@ public class AdminController {
              model.addAttribute("poruka",true);
         }
         model.addAttribute("users",users);
+        List<Rezervacija> rezervacije=rezervacijaService.findAll();
+        model.addAttribute("rezervations",rezervacije);
         return "admin/admin";
     }
 

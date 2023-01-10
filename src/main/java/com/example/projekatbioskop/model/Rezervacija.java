@@ -1,6 +1,9 @@
 package com.example.projekatbioskop.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @Entity
@@ -21,9 +24,9 @@ public class Rezervacija {
     @JoinColumn(name="iduser")
     private User user;
 
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm:ss")
     @JoinColumn(name="placed_at")
-    private Date placedAt = new Date();
+    private LocalDateTime placedAt =LocalDateTime.now();
 
 
     public int getIdrezervacija() {
@@ -50,11 +53,11 @@ public class Rezervacija {
         this.user = user;
     }
 
-    public Date getPlacedAt() {
+    public LocalDateTime getPlacedAt() {
         return placedAt;
     }
 
-    public void setPlacedAt(Date placedAt) {
+    public void setPlacedAt(LocalDateTime placedAt) {
         this.placedAt = placedAt;
     }
 

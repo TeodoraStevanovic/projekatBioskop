@@ -10,6 +10,8 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 @Controller
@@ -58,7 +60,9 @@ rezervacija.setUser(korisnik);
 Projekcija theProjekcija=projekcijaService.findById(theId);
         System.out.println(theProjekcija);
 rezervacija.setProjekcija(theProjekcija);
-rezervacija.setPlacedAt(new Date());
+
+rezervacija.setPlacedAt(LocalDateTime.now());
+
         System.out.println(rezervacija);
         if (theProjekcija.getPreostaoBrojMesta()>0){
             theProjekcija.setPreostaoBrojMesta(theProjekcija.getPreostaoBrojMesta()-1);

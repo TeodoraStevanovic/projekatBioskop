@@ -13,7 +13,7 @@
   <h1>Cineplexx</h1></div>
   <nav>
     <ul class="pozadina">
-      <li><a th:href="@{/static}">Dobrodošli</a></li>
+      <li><a th:href="@{/}">Dobrodošli</a></li>
       <li><a th:href="@{/film/list}" >Repertoar</a></li>
       <li><a th:href="@{/bioskop/list}" >Bioskopi</a></li>
       <li><a th:href="@{/projekcija/list}" >Projekcije</a></li>
@@ -64,9 +64,10 @@
       <td th:text="${rezervation.projekcija.sala.bioskop.nazivbioskopa}" />
       <td th:text="'Sala: '+${rezervation.projekcija.sala.naziv}" />
       <td th:text="'Film: '+${rezervation.projekcija.film.naziv}" />
-     <b><td th:text="${rezervation.projekcija.datum}" /></b>
+     <b><td  th:text="${rezervation.projekcija.datum}" /></b>
+
       <b> <td th:text="${rezervation.projekcija.vreme}" /></b>
-      <td  th:text="'Placed at: '+${rezervation.placedAt}" />
+      <td  th:text="'Placed at:'+${rezervation.placedAt}" />
 
       <!--izmeni rezervaciju
       <td ><a style="color: #ff7300" th:href="@{/admin/showFormForUpdateReservation(id=${rezervation.idrezervacija})}">Izmeni</a></td>-->
