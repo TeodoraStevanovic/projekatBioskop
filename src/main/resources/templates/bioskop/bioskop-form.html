@@ -33,16 +33,20 @@
 
         <input type="hidden" th:field="*{idbioskop}" />
 
-        <input type="text" th:field="*{nazivbioskopa}"
+        <div class="row"> <input type="text" th:field="*{nazivbioskopa}"
                class="form-control mb-4 col-4" placeholder="Naziv bioskopa">
-
+        <span class="validationError col" th:if="${#fields.hasErrors('nazivbioskopa')}" th:errors="*{nazivbioskopa}"> Error</span>
+        </div>
+        <div class="row">
         <input type="text" th:field="*{adresa}"
                class="form-control mb-4 col-4" placeholder="adresa">
-
+        <span class="validationError col" th:if="${#fields.hasErrors('adresa')}" th:errors="*{adresa}"> Error</span>
+        </div>
+        <div class="row">
         <input type="text" th:field="*{telefon}"
                class="form-control mb-4 col-4" placeholder="telefon">
-
-        <!-- ovde mora da se doda nova sala-->
+        <span class="validationError col" th:if="${#fields.hasErrors('telefon')}" th:errors="*{telefon}"> Error</span>
+        </div> <!-- ovde mora da se doda nova sala-->
 
 
 

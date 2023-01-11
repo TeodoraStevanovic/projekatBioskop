@@ -77,3 +77,8 @@ td{
     padding-left: 20px;
     padding-right: 20px;
 }
+
+.validationError{
+    color: red;
+    font-style: italic;
+}

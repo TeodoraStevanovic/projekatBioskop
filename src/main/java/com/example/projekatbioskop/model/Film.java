@@ -1,6 +1,6 @@
 package com.example.projekatbioskop.model;
 
-
+import javax.validation.constraints.*;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -15,31 +15,50 @@ public class Film {
     @Column(name="idfilm")
     private int idfilm;
 
-
+    @NotBlank
+    @Size(min=1, message="Film mora da ima glumce")
+    @Size(max=500, message="najvise 500 karaktera")
     @Column(name="glumci")
     private String glumci;
 
 
+    @NotBlank
+    @Size(min=1, message="Naziv filma mora da ima bar jedan karakter")
+    @Size(max=100, message="naziv sme da ima najvise  100 karaktera")
     @Column(name="naziv")
     private String naziv;
 
 
- //   @NotNull
-  //  @Size(min=1, message="Mora da postoji opis filma")
+    @NotBlank
+    @Size(min=1, message="Mora da postoji opis filma")
+    @Size(max=1000, message="opis filma ne sme da ima vise od 1000 karaktera")
     @Column(name="opis")
     private String opis;
 
+
+    //@Digits(integer=3,fraction = 0,message = "mora da bude broj")
+    @Min(value=1,message ="mora da traje bar jedan minut" )
+    @Max(value=240,message ="ne sme da traje duze od 4 sata(240 min)" )
     @Column(name="trajanje")
     private int trajanje;
 
+    @Digits(fraction = 1,message = "mora da bude decimalan broj",integer = 1)
     @Column(name="ocena")
     private double ocena;
 
+    @NotNull
+    @Size(min=1, message="Zanr filma mora da se doda")
+    @Size(max=100, message="zanr ne sme da ima vise od 100 karaktera")
     @Column(name="zanr")
     private String zanr;
 
+
+    @NotNull
+    @Size(min=1, message="link slike filma mora da se doda")
+    @Size(max=1000, message="link slike ne sme da ima vise od 1000 karaktera")
     @Column(name="slika")
     private String slika;
+
 
     @OneToMany(mappedBy="film",
             //     cascade= {CascadeType.PERSIST, CascadeType.MERGE,

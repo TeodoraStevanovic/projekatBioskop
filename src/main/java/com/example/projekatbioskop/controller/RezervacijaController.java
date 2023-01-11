@@ -11,8 +11,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -86,7 +88,11 @@ rezervacija.setPlacedAt(LocalDateTime.now());
         return "user/user-form";
     }
     @PostMapping("/saveUser")
-    public String saveUser( @ModelAttribute("user") User theUser,@RequestParam("newPassword") String lozinka) {
+    public String saveUser(@Valid @ModelAttribute("user") User theUser, @RequestParam("newPassword") String lozinka, Errors errors) {
+        if (errors.hasErrors()) {
+            return "user/user-form";
+        }
+
         if (!StringUtils.isEmpty(lozinka)) {
 
             theUser.setPassword(passwordEncoder.encode(lozinka));

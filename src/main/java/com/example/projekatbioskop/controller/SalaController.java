@@ -7,8 +7,10 @@ import com.example.projekatbioskop.service.*;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,7 +54,11 @@ public class SalaController {
     }
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/save")
-    public String saveSala( @ModelAttribute("sala") Sala theSala) {
+    public String saveSala(@Valid @ModelAttribute("sala") Sala theSala, Errors errors) {
+
+        if (errors.hasErrors()) {
+            return "sala/sala-form";
+        }
         int idBioskopa = theSala.getBioskop().getIdbioskop();
         Bioskop theCinema = bioskopService.findById(idBioskopa);
         //makon toga nadji sve postojece projekcije za taj bioskop

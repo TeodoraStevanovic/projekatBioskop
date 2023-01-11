@@ -28,21 +28,34 @@
 <form style="margin-left:200px" action="#" th:action="@{/admin/save}" th:object="${user}" method="POST">
 
     <input type="hidden" th:field="*{iduser}" />
-    <input type="text" th:field="*{ime}"
-           class="form-control mb-4 col-4" placeholder="Ime">
+  <div class="row">  <input type="text" th:field="*{ime}" class="form-control mb-4 col-4" placeholder="Ime">
+    <span  class="validationError col" th:if="${#fields.hasErrors('ime')}" th:errors="*{ime}"> Error</span>
+    </div>
 
-    <input type="text" th:field="*{prezime}"
-           class="form-control mb-4 col-4" placeholder="prezime">
-
-    <input type="text" th:field="*{username}"
+    <div class="row"> <input type="text" th:field="*{prezime}" class="form-control mb-4 col-4" placeholder="prezime">
+    <span class="validationError col" th:if="${#fields.hasErrors('prezime')}" th:errors="*{prezime}"> Error</span>
+    </div>
+    <div class="row"><input type="text" th:field="*{username}"
            class="form-control mb-4 col-4" placeholder="username">
+    <span class="validationError col"
+          th:if="${#fields.hasErrors('username')}"
+          th:errors="*{username}"> Error</span>
+    </div>
     <input type="text" th:field="*{password}"
            class="form-control mb-4 col-4" placeholder="password" readonly>
+        <div class="row">
     <input type="text" th:field="*{email}"
            class="form-control mb-4 col-4" placeholder="email">
+    <span class="validationError col" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"> Error</span>
+        </div>
+    <div class="row">
+
     <input type="text" th:field="*{brojTelefona}"
            class="form-control mb-4 col-4" placeholder="broj telefona">
-
+    <span class="validationError col"
+          th:if="${#fields.hasErrors('brojTelefona')}"
+          th:errors="*{brojTelefona}"> Error</span>
+    </div>
     <select class="form-control mb-4 col-4"  th:field="*{uloga}">
         <option th:each="uloga : ${list}"
                 th:value="${uloga}"

@@ -31,12 +31,17 @@
 
     <input type="hidden" th:field="*{idsala}" />
     <input type="hidden" th:field="*{bioskop.idbioskop}" />
+    <div class="row">
     <input type="text" th:field="*{naziv}"
            class="form-control mb-4 col-4" placeholder="Naziv sale ">
-    <input type="text" th:field="*{kapacitet}"
+    <span class="validationError col" th:if="${#fields.hasErrors('naziv')}" th:errors="*{naziv}"> Error</span>
+
+    </div>
+    <div class="row">
+      <input type="text" th:field="*{kapacitet}"
            class="form-control mb-4 col-4" placeholder="kapacitet ">
-
-
+    <span class="validationError col" th:if="${#fields.hasErrors('kapacitet')}" th:errors="*{kapacitet}"> Error</span>
+    </div>
     <button  style="background-color: #ff7300" type="submit" class="btn btn-info col-2">Sacuvaj</button>
 
   </form>

@@ -6,8 +6,10 @@ import com.example.projekatbioskop.service.BioskopService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,7 +46,10 @@ public class BioskopController {
     }
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/save")
-    public String saveCinema( @ModelAttribute("cinema") Bioskop theCinema) {
+    public String saveCinema(@Valid @ModelAttribute("cinema") Bioskop theCinema, Errors errors) {
+        if (errors.hasErrors()) {
+            return "bioskop/bioskop-form";
+        }
         bioskopService.save(theCinema);
         return "redirect:/bioskop/list";
     }

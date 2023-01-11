@@ -8,7 +8,9 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.validation.Errors;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,7 +54,11 @@ public class AdminController {
     }
 
     @PostMapping("/save")
-    public String saveUser( @ModelAttribute("user") User theUser) {
+    public String saveUser( @Valid @ModelAttribute("user") User theUser,Errors errors) {
+        if (errors.hasErrors()) {
+            System.out.println(errors);
+            return "admin/user-form";
+        }
         userService.save(theUser);
         return "redirect:/admin";
     }

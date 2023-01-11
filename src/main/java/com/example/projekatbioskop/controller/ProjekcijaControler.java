@@ -10,8 +10,10 @@ import com.example.projekatbioskop.service.SalaService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -87,7 +89,10 @@ public class ProjekcijaControler {
     }
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/save")
-    public String saveCinema(@ModelAttribute("project") Projekcija projekcija) {
+    public String saveCinema(@Valid @ModelAttribute("project") Projekcija projekcija, Errors errors) {
+        if (errors.hasErrors()) {
+            return "projekcija/projekcija-form";
+        }
         projekcija.setBrojMesta(projekcija.getSala().getKapacitet());
         projekcija.setPreostaoBrojMesta(projekcija.getSala().getKapacitet());
         projekcijaService.save(projekcija);

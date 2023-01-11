@@ -10,8 +10,10 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -59,11 +61,11 @@ public class FilmController {
     }
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/save")
-    public String saveEmployee( @ModelAttribute("movie") Film theMovie) {
-//, Errors errors
-      //  if (errors.hasErrors()) {
-        //    return "design";
-      //  }
+    public String saveEmployee(@Valid @ModelAttribute("movie") Film theMovie, Errors errors) {
+
+       if (errors.hasErrors()) {
+            return "film/film-form";
+       }
         filmService.save(theMovie);
         return "redirect:/film/list";
     }

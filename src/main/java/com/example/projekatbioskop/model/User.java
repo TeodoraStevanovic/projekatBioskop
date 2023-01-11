@@ -1,5 +1,8 @@
 package com.example.projekatbioskop.model;
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,20 +14,42 @@ public class User  {
     @Column(name="iduser")
     private int iduser;
 
+    @NotBlank
+    @Size(min=1, message="email mora da ima bar jedan karakter")
+    @Size(max=70, message="email sme da ima najvise  70 karaktera")
+    @Pattern(regexp = "^.*@.*$",message = "email mora da ima @!")
     @Column(name="email")
     private  String email;
+    @NotBlank
+    @Size(min=1, message="username mora da ima bar jedan karakter")
+    @Size(max=45, message="username sme da ima najvise  45 karaktera")
     @Column(name="username")
     private  String username;
+    @NotBlank
+    @Size(min=1, message="lozinka mora da ima bar jedan karakter")
     @Column(name="password")
     private  String password;
+
+    @NotBlank
+    @Size(min=1, message="ime mora da ima bar jedan karakter")
+    @Size(max=45, message="ime sme da ima najvise  45 karaktera")
     @Column(name="ime")
     private  String ime;
+    @NotBlank
+    @Size(min=1, message="prezime mora da ima bar jedan karakter")
+    @Size(max=45, message="prezime sme da ima najvise  45 karaktera")
     @Column(name="prezime")
     private  String prezime;
+    @NotBlank
+    @Size(min=1, message="telefon mora da ima bar jedan karakter")
+    @Size(max=45, message="broj telefona sme da ima najvise  45 karaktera")
+    @Pattern(regexp = "^\\+381[0-9]*",message = "mora da bude u formatu +381")
     @Column(name="brojtelefona")
     private  String brojTelefona;
 
-    @Column(name = "uloga")
+    @NotBlank
+    @Size(min=1, message="uloga mora da ima bar jedan karakter")
+    @Size(max=45, message="uloga sme da ima najvise  45 karaktera")@Column(name = "uloga")
     private String uloga;
 
     public int getIduser() {

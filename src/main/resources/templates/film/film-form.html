@@ -33,23 +33,40 @@
     <form style="margin-left:200px" action="#" th:action="@{/film/save}" th:object="${movie}" method="POST">
 
         <input type="hidden" th:field="*{idfilm}" />
+        <div class="row">
         <input type="text" th:field="*{naziv}"
                class="form-control mb-4 col-4" placeholder="Naziv">
-
+        <span class="validationError col" th:if="${#fields.hasErrors('naziv')}" th:errors="*{naziv}"> Error</span>
+        </div> <div class="row">
         <input type="text" th:field="*{glumci}"
                class="form-control mb-4 col-4" placeholder="Glumci">
-
-        <input type="text" th:field="*{trajanje}"
-               class="form-control mb-4 col-4" placeholder="Trajanje">
-        <input type="text" th:field="*{ocena}"
+        <span class="validationError col"
+              th:if="${#fields.hasErrors('glumci')}"
+              th:errors="*{glumci}"> Error</span>
+    </div>
+        <div class="row">
+            <input type="text" th:field="*{trajanje}" class="form-control mb-4 col-4" placeholder="Trajanje">
+        <span class="validationError col" th:if="${#fields.hasErrors('trajanje')}" th:errors="*{trajanje}"> Error</span>
+        </div>
+        <div class="row">  <input type="text" th:field="*{ocena}"
                class="form-control mb-4 col-4" placeholder="ocena">
-        <input type="text" th:field="*{zanr}"
+        <span class="validationError col" th:if="${#fields.hasErrors('ocena')}" th:errors="*{ocena}"> Error</span>
+    </div>
+        <div class="row">
+            <input type="text" th:field="*{zanr}"
                class="form-control mb-4 col-4" placeholder="zanr">
+        <span class="validationError col" th:if="${#fields.hasErrors('zanr')}" th:errors="*{zanr}"> Error</span>
+        </div>
+        <div class="row">
         <input type="text" th:field="*{opis}"
                class="form-control mb-4 col-4" placeholder="Opis">
+        <span class="validationError col" th:if="${#fields.hasErrors('opis')}" th:errors="*{opis}"> Error</span>
+        </div>
+        <div class="row">
         <input type="text" th:field="*{slika}"
                class="form-control mb-4 col-4" placeholder="link do slike">
-
+        <span class="validationError col" th:if="${#fields.hasErrors('slika')}" th:errors="*{slika}"> Error</span>
+        </div>
         <button  style="background-color: #ff7300" type="submit" class="btn btn-info col-2">Sacuvaj</button>
 
     </form>

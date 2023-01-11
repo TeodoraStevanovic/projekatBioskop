@@ -1,7 +1,7 @@
 package com.example.projekatbioskop.model;
 
 import javax.persistence.*;
-
+import javax.validation.constraints.*;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import java.util.ArrayList;
@@ -16,12 +16,23 @@ public class Bioskop {
     @Column(name="idbioskop")
     private int idbioskop;
 
+    @NotBlank
+    @Size(min=1, message="Naziv  mora da ima bar jedan karakter")
+    @Size(max=100, message="naziv sme da ima najvise  100 karaktera")
     @Column(name="nazivbioskopa")
     private String nazivbioskopa;
 
+    @NotBlank
+    @Size(min=1, message="adresa mora da ima bar jedan karakter")
+    @Size(max=1000, message="adresa sme da ima najvise  100 karaktera")
     @Column(name="adresa")
     private String adresa;
+
+    @NotBlank
+    @Size(min=1, message="telefon mora da ima bar jedan karakter")
+    @Size(max=20, message="broj telefona sme da ima najvise  20 karaktera")
     @Column(name="telefon")
+  @Pattern(regexp = "^\\+381[0-9]*",message = "mora da bude u formatu +381")
     private String telefon;
 
    @OneToMany(mappedBy="bioskop",

@@ -108,3 +108,7 @@ tr{
     text-align: center;
 
 }
+.validationError{
+    color: red;
+    font-style: italic;
+}

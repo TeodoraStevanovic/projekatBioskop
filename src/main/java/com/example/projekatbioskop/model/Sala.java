@@ -3,6 +3,7 @@ package com.example.projekatbioskop.model;
 import javax.persistence.*;
 
 import javax.persistence.Table;
+import javax.validation.constraints.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -16,8 +17,13 @@ public class Sala {
     @Column(name="idsala")
     private int idsala;
 
+    @NotBlank
+    @Size(min=1, message="naziv sale mora da ima bar jedan karakter")
+    @Size(max=100, message="naziv sme da ima najvise  100 karaktera")
     @Column(name="nazivsale")
     private String naziv;
+    @Min(value=1,message ="sala mora da ima bar jedno mesto" )
+    @Max(value=1000,message ="ne moze da bude veci od 1000" )
     @Column(name="kapacitet")
     private int kapacitet;
     @ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
