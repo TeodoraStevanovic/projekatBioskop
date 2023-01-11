@@ -26,6 +26,7 @@ public class AdminController {
         this.rezervacijaService =projekcijaService;
     }
     @GetMapping
+
     public String adminPanel(Model theModel){
       List<User> users=userService.findAll();
       theModel.addAttribute("users",users);

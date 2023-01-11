@@ -75,7 +75,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .logout()
                 .logoutUrl("/logout")
-                .logoutSuccessUrl("/login").and()
+                .logoutSuccessUrl("/login?logout")
+               // .logoutSuccessUrl("/login")
+                .and()
                 .exceptionHandling().accessDeniedPage("/access-denied");
 
     }

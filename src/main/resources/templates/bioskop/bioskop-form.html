@@ -10,9 +10,8 @@
 </head>
 <body sec:authorize="isAuthenticated()">
 
-
     <div id="naslov">
-        <h1>Cineplexx</h1>
+        <h1>Cineplexx</h1></div>
     <nav>
         <ul class="pozadina">
             <li><a th:href="@{/}">Dobrodošli</a></li>
@@ -24,7 +23,7 @@
             <li> <a  th:href="@{/logout}">Odjavi se</a></li>
         </ul>
     </nav>
-</div>
+
 
     <h1 class="glavniNaslov">Bioskop forma</h1>
     <div class="container">

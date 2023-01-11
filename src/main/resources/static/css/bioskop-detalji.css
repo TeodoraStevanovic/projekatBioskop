@@ -1,5 +1,6 @@
 .nazivSale{
     background-color: rgba(227, 225, 225, 0.69);
+
     text-align: left;
     color: #ff7300;
 }
@@ -8,7 +9,6 @@
     text-align: center;
     color: rgba(0, 0, 0, 0.57);
 }
-
 body{background-image: url(https://i.pinimg.com/564x/8e/f3/f7/8ef3f7582ad5f99b05dc8a0e9e4af09a.jpg);
     background-color: #ffffff; /* Used if the image is unavailable */
     width: 100%;
@@ -17,7 +17,6 @@ body{background-image: url(https://i.pinimg.com/564x/8e/f3/f7/8ef3f7582ad5f99b05
     background-size: cover; /* Resize the background image to cover the entire container */
     background-attachment: fixed;
     position: sticky;
-
 
 }
 .naslov{
@@ -35,6 +34,8 @@ body{background-image: url(https://i.pinimg.com/564x/8e/f3/f7/8ef3f7582ad5f99b05
     text-align: center;
     text-shadow: 2px 2px 0px rgb(145, 145, 145);
     margin-bottom: 25px;
+    margin-right: auto;
+    margin-left: auto;
 
 }
 nav{
@@ -67,11 +68,7 @@ nav ul li a{
     transition: .5s;
 }
 
-table{
-    color:white ;
-   margin-left: 100px;
-    margin-bottom: 75px;
-}
+
 
 .dugmeDodaj{
     text-align: center;
@@ -84,13 +81,19 @@ table{
     margin-right: auto;
     margin-bottom: 15px;
 }
-
+table{
+    color:white ;
+   margin-left: auto;
+    margin-right: auto;
+width: 50%;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
 td{
     font-size: 19px;
     height: 50px;
     border-bottom: 1px solid #ddd;
     padding-left: 10px;
-
 }
 
 
@@ -109,11 +112,21 @@ td{
 
 }
 #text{
-    margin-left: 100px;
+  margin-top: 25px;
+    margin-bottom: 25px;
+    font-family: "Courier New", serif;
+    margin-right: auto;
+    margin-left: auto;
     text-align: left;
     position: relative;
-    width: 40%;
-    font-size: 15px;
+    width: 50%;
+    font-size: 25px;
+    padding-left: 50px;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #e0dfdf;
+    border-radius: 8px;
+    color: black;
 }
 a{
     color: #ff7300;

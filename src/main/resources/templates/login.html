@@ -13,10 +13,14 @@
 <br>
 
 
-    <div th:if ="${param.logout}">You have been logged out.</div>
+
 <p>Nemas nalog? Klikni <a  style="color: #ff7300" th:href="@{/register}">ovde</a> da se registrujes.</p>
 
 <form  method="POST" th:action="@{/login}" id="loginForm">
+    <div th:if="${param.error}">
+        <div class="alert alert-danger">Invalid username or password.</div></div>
+    <div th:if="${param.logout}"><div class="alert alert-info">You have been logged out.</div></div>
+
   <label for="username">Username: </label>
   <input type="text"  class="form-control mb-2 col-12" name="username" id="username" /><br/>
 
