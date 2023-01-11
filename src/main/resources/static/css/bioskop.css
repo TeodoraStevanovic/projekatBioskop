@@ -17,8 +17,6 @@ body{background-image: url(https://i.pinimg.com/564x/8e/f3/f7/8ef3f7582ad5f99b05
     color: white;
     margin-top: 20px;
 }
-
-
 nav{
     background-color: grey;
     opacity: 70%;
@@ -32,12 +30,12 @@ nav ul{
 nav  ul li{
     display: inline-block;
     line-height: 80px;
-    margin: 0 5px;
+    margin: 0 3px;
 
 }
 nav ul li a{
-    font-size: 25px;
-    padding: 15px 40px;
+    font-size: 23px;
+    padding: 15px 25px;
     border-radius: 3px;
     text-transform: uppercase;
     color: #e0dfdf;

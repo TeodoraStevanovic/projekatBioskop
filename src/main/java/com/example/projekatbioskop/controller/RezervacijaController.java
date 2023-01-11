@@ -7,11 +7,15 @@ import com.example.projekatbioskop.service.RezervacijaService;
 import com.example.projekatbioskop.service.UserService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 @Controller
@@ -20,37 +24,16 @@ public class RezervacijaController {
 
     RezervacijaService rezervacijaService;
     ProjekcijaService projekcijaService;
-    //vidi da li treba user detail ili user service
-    UserService userService;
 
-    public RezervacijaController(RezervacijaService rezervacijaService, ProjekcijaService projekcijaService, UserService userService) {
+    UserService userService;
+    private PasswordEncoder passwordEncoder;
+
+    public RezervacijaController(RezervacijaService rezervacijaService, ProjekcijaService projekcijaService, UserService userService, PasswordEncoder passwordEncoder) {
         this.rezervacijaService = rezervacijaService;
         this.projekcijaService = projekcijaService;
         this.userService = userService;
+        this.passwordEncoder = passwordEncoder;
     }
-
-  //  @GetMapping("/list")
-  //  public String listRezervacije(Model theModel) {
-   //     List<Rezervacija> rezervacije =rezervacijaService.findAll();
-   //     for (Rezervacija b: rezervacije) {
-   //         System.out.println(b);
-   //     }
-       // theModel.addAttribute("noviBioskop",new Bioskop());
-   //     theModel.addAttribute("rezervations", rezervacije);
-    //    return "rezervacije/rezervacije";
-  //  }
-
-
-   // @GetMapping("/showFormAdd")
-   // public String showFormAdd(Model theModel) {
-     //   Projekcija projekcija = new Projekcija();
-     //   List<Sala> sale=salaService.findAll();
-     //   List<Film> filmovi =filmService.findAll();
-       // theModel.addAttribute("movies", filmovi);
-      //  theModel.addAttribute("sale", sale);
-      //  theModel.addAttribute("project", projekcija);
-      //  return "projekcija/projekcija-form";
-  //  }
 
     @RequestMapping("/save")
     public String saveRezervacija(@AuthenticationPrincipal CustomUserDetails loggedUser, @RequestParam("idprojekcija") int theId) {
@@ -72,4 +55,43 @@ rezervacija.setPlacedAt(LocalDateTime.now());
         return "redirect:/projekcija/list";
     }
 
+
+    //da se korisniku prikazu sve njegove rezervacije
+    @GetMapping("/list")
+    public String listRezervacije(Model theModel,@AuthenticationPrincipal CustomUserDetails loggedUser) {
+        User korisnik=userService.findByUsername(loggedUser.getUser().getUsername());
+        List<Rezervacija> rezervacije  =korisnik.getRezervacije();
+        for (Rezervacija b: rezervacije) {System.out.println(b);
+        }
+        theModel.addAttribute("user",korisnik);
+        theModel.addAttribute("rezervations", rezervacije);
+       return "user/user";
+      }
+
+    @GetMapping("/delete")
+    public String delete(@RequestParam("id") int theId) {
+        Rezervacija rezervacija=rezervacijaService.findById(theId);
+        rezervacija.getProjekcija().setPreostaoBrojMesta(rezervacija.getProjekcija().getPreostaoBrojMesta()+1);
+        rezervacijaService.deleteById(theId);
+        return "redirect:/rezervacija/list";
+    }
+
+
+    @GetMapping("/showFormForUpdateUser")
+    public String showFormForUpdateUser(@RequestParam("iduser") int theId, Model theModel) {
+        User user = userService.findById(theId);
+        theModel.addAttribute("user", user);
+        theModel.addAttribute("newPassword","");
+
+        return "user/user-form";
+    }
+    @PostMapping("/saveUser")
+    public String saveUser( @ModelAttribute("user") User theUser,@RequestParam("newPassword") String lozinka) {
+        if (!StringUtils.isEmpty(lozinka)) {
+
+            theUser.setPassword(passwordEncoder.encode(lozinka));
+        }System.out.println(lozinka);
+        userService.save(theUser);
+        return "redirect:/rezervacija/list";
+    }
 }

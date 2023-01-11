@@ -35,9 +35,7 @@ public class ProjekcijaControler {
     @GetMapping("/list")
     public String listProjekcije(Model theModel) {
         List<Bioskop> bioskopi =bioskopService.findAll();
-        for (Bioskop b: bioskopi) {
-            System.out.println(b);
-        }
+      //  for (Bioskop b: bioskopi) {System.out.println(b);}
         theModel.addAttribute("noviBioskop",new Bioskop());
         theModel.addAttribute("cinemas", bioskopi);
         return "projekcija/projekcije";

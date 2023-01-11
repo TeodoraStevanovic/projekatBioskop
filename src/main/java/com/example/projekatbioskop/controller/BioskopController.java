@@ -25,13 +25,13 @@ public class BioskopController {
     public String listCinemas(Model theModel) {
         List<Bioskop> theBioskop = bioskopService.findAll();
         theModel.addAttribute("cinemas", theBioskop);
-        for (Bioskop s:theBioskop) { System.out.println(s); }
+       // for (Bioskop s:theBioskop) { System.out.println(s); }
         return "bioskop/svibioskopi";
     }
     @GetMapping("/showDetail")
     public String showDetail(@RequestParam("idbioskop") int theId, Model theModel) {
         Bioskop theCinema = bioskopService.findById(theId);
-        System.out.println(theCinema);
+      //  System.out.println(theCinema);
         theModel.addAttribute("cinema", theCinema);
        return "bioskop/bioskop-detail";
     }

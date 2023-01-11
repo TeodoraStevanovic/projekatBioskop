@@ -38,7 +38,7 @@ public class FilmController {
 
         theModel.addAttribute("movies", theMovies);
 
-        for (Film f:theMovies) { System.out.println(f); }
+      //  for (Film f:theMovies) { System.out.println(f); }
 
         return "film/repertoar";
     }

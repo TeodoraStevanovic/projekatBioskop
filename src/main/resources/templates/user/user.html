@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" th:href="@{/css/user.css}" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>User panel</title>
+</head>
+<body sec:authorize="isAuthenticated()">
+<div id="naslov">
+    <h1>Cineplexx</h1></div>
+<nav>
+    <ul class="pozadina">
+        <li><a th:href="@{/}">Dobrodošli</a></li>
+        <li><a th:href="@{/film/list}" >Repertoar</a></li>
+        <li><a th:href="@{/bioskop/list}" >Bioskopi</a></li>
+        <li><a th:href="@{/projekcija/list}" >Projekcije</a></li>
+        <li > <a  th:href="@{/rezervacija/list}">Moje informacije</a></li>
+        <li sec:authorize="hasAuthority('ADMIN')"> <a  th:href="@{/admin}">Admin</a></li>
+        <li> <a  th:href="@{/logout}">Odjavi se</a></li>
+
+
+    </ul>
+</nav>
+<h1 class="glavniNaslov">User panel</h1>
+
+<table  th:if="${rezervations.size()>0}" >
+    <h2 style="text-align: left; margin-left: 75px;margin-bottom: 20px;">Moje rezervacije:</h2>
+
+    <tr th:each="rez : ${rezervations}">
+        <td  th:text="'Bioskop: '+${rez.projekcija.sala.bioskop.nazivbioskopa}" />
+        <td  th:text="${rez.projekcija.sala.naziv}" />
+        <td  th:text="${rez.projekcija.film.naziv}" />
+        <td  th:text="${rez.projekcija.datum}" />
+        <td  th:text="${rez.projekcija.vreme}" />
+        <td  th:text="'Datum rezervisanja: '+${rez.placedAt}" />
+
+        <!--izmeni rezervaciju
+        <td ><a style="color: #ff7300" th:href="@{/rezervacija/showFormForUpdate(id=${rez.idrezervacija})}">Izmeni</a></td>
+        -->
+        <!--obrisi rezervaciju-->
+        <td > <a style="color: #ff7300" th:href="@{/rezervacija/delete(id=${rez.idrezervacija})}"
+                 onclick="if (!(confirm('Da li ste sigurni da zelite da obrisete ovu rezervaciju?'))) return false">Obrisi</a></td>
+    </tr>
+</table>
+<div id="user info">
+
+    <div class="card  " style="width: 25%;margin-top: 30px; margin-left: auto;margin-right: auto; ">
+        <img class="card-img-top" th:src="@{https://i.pinimg.com/736x/1e/f8/15/1ef8156889dba99417ff2b3a6d99988d.jpg}" alt="Card image cap">
+
+        <div class="card-body text-left">
+            <h5 class="card-title text-center">User info</h5>
+        <div class="row">   <b class="col">Ime i prezime:</b> <p class="card-text col" th:text="${user.ime}+' '+${user.prezime}" /></div>
+            <div class="row">   <b class="col">Username:</b> <p class="card-text col" th:text="${user.username}" /></div>
+            <div class="row">   <b class="col">Broj telefona:</b> <p class="card-text col" th:text="${user.brojTelefona}" /></div>
+            <div class="row">   <b class="col">Email:</b> <p class="card-text col" th:text="${user.email}" /></div>
+            <div class="row">   <b class="col">Uloga:</b> <p class="card-text col" th:text="${user.uloga}" /></div>
+            <div class=" text-center">
+                <a th:href="@{/rezervacija/showFormForUpdateUser(iduser=${user.iduser})}" style="background-color: #ff7300;color: white; margin-top: 5px" class="btn col-8 ">Izmeni</a></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

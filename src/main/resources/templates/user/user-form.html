@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" th:href="@{/css/admin.css}" />
+    <link rel="stylesheet" th:href="@{/css/user.css}" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
     <title>Update user info</title>
 </head>
@@ -25,7 +25,7 @@
 <h1 style="margin-bottom: 30px;" class="glavniNaslov">Izmena korisnika</h1>
 
 <!--form-->
-<form style="margin-left:200px" action="#" th:action="@{/admin/save}" th:object="${user}" method="POST">
+<form style="margin-left:200px" action="#" th:action="@{/rezervacija/saveUser}" th:object="${user}" method="POST">
 
     <input type="hidden" th:field="*{iduser}" />
     <input type="text" th:field="*{ime}"
@@ -38,16 +38,15 @@
            class="form-control mb-4 col-4" placeholder="username">
     <input type="text" th:field="*{password}"
            class="form-control mb-4 col-4" placeholder="password" readonly>
+    <input type="text" th:value="${newPassword}" th:name="newPassword"
+           class="form-control mb-4 col-4" placeholder="password" >
     <input type="text" th:field="*{email}"
            class="form-control mb-4 col-4" placeholder="email">
     <input type="text" th:field="*{brojTelefona}"
            class="form-control mb-4 col-4" placeholder="broj telefona">
 
-    <select class="form-control mb-4 col-4"  th:field="*{uloga}">
-        <option th:each="uloga : ${list}"
-                th:value="${uloga}"
-                th:text="${uloga}"></option>
-    </select >
+    <input type="text" th:field="*{uloga}"
+           class="form-control mb-4 col-4" placeholder="uloga" readonly>
 
     <button  style="background-color: #ff7300" type="submit" class="btn btn-info col-2">Sacuvaj</button>
 
@@ -55,7 +54,7 @@
 
 <hr>
 
-<a style="color: #ff7300; margin-left:200px; font-size: 20px;margin-bottom: 50px;" th:href="@{/admin}">Vrati se da vidis sve korisnike</a>
+<a style="color: #ff7300; margin-left:200px; font-size: 20px;margin-bottom: 50px;" th:href="@{/rezervacija/list}">Vrati se da vidis sve informacije</a>
 
 </body>
 </html>
