@@ -89,8 +89,13 @@ public class ProjekcijaControler {
     }
     @PreAuthorize("hasAuthority('ADMIN')")
     @PostMapping("/save")
-    public String saveCinema(@Valid @ModelAttribute("project") Projekcija projekcija, Errors errors) {
+    public String saveCinema(@Valid @ModelAttribute("project") Projekcija projekcija, Errors errors,Model theModel) {
         if (errors.hasErrors()) {
+            List<Sala> sale =salaService.findAll();
+            List<Film> filmovi =filmService.findAll();
+            theModel.addAttribute("movies", filmovi);
+            theModel.addAttribute("sale", sale);
+
             return "projekcija/projekcija-form";
         }
         projekcija.setBrojMesta(projekcija.getSala().getKapacitet());

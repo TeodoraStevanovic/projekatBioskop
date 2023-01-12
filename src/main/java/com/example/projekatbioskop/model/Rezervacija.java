@@ -1,5 +1,6 @@
 package com.example.projekatbioskop.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -14,11 +15,13 @@ public class Rezervacija {
     @Column(name="idrezervacije")
     private int idrezervacija;
 
+    @JsonBackReference(value="rezervacija-projekcije")
     @ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
             CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name="idprojekcija")
     private Projekcija projekcija;
 
+    @JsonBackReference(value="rezervacija-user")
     @ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
             CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name="iduser")

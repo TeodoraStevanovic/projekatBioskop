@@ -1,4 +1,6 @@
 package com.example.projekatbioskop.model;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
@@ -154,6 +156,7 @@ public class User  {
     }
 
 
+    @JsonManagedReference(value="rezervacija-user")
     @OneToMany(mappedBy="user", cascade = CascadeType.MERGE )
     private List<Rezervacija> rezervacije;
 

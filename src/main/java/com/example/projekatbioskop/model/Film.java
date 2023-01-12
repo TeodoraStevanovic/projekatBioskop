@@ -1,7 +1,7 @@
 package com.example.projekatbioskop.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import javax.validation.constraints.*;
-
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -60,6 +60,7 @@ public class Film {
     private String slika;
 
 
+    @JsonManagedReference(value="film-projekcija")
     @OneToMany(mappedBy="film",
             //     cascade= {CascadeType.PERSIST, CascadeType.MERGE,
             //        CascadeType.DETACH, CascadeType.REFRESH}

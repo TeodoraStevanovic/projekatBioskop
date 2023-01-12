@@ -1,5 +1,7 @@
 package com.example.projekatbioskop.model;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import javax.validation.constraints.*;
 import javax.persistence.Entity;
@@ -35,6 +37,7 @@ public class Bioskop {
   @Pattern(regexp = "^\\+381[0-9]*",message = "mora da bude u formatu +381")
     private String telefon;
 
+    @JsonManagedReference(value="sala-bioskop")
    @OneToMany(mappedBy="bioskop",
       //     cascade= {CascadeType.PERSIST, CascadeType.MERGE,
           //        CascadeType.DETACH, CascadeType.REFRESH}

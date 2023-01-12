@@ -1,7 +1,11 @@
 package com.example.projekatbioskop.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.persistence.*;
+import javax.validation.constraints.Future;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.ArrayList;
@@ -21,6 +25,7 @@ public class Projekcija {
     @Column(name="brojmesta")
     private int brojMesta;
 
+    @Future(message = "datum mora da bude u buducnosti")
     @Column(name="datum")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Temporal(TemporalType.DATE)
@@ -30,15 +35,21 @@ public class Projekcija {
     private String vreme;
 @Column(name="preostao_broj_mesta")
 private int preostaoBrojMesta;
-    @ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
-            CascadeType.DETACH, CascadeType.REFRESH})
+
+    @JsonBackReference(value="film-projekcija")
+    @ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name="idfilm")
     private Film film;
 //vidi da li da povezes ipak sa bioskopom
-    @ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
-            CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinColumn(name="idsala")
+@JsonBackReference(value="sala-projekcija")
+@ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+@JoinColumn(name="idsala")
     private Sala sala;
+
+    @JsonManagedReference(value="rezervacija-projekcije")
+    @OneToMany(mappedBy="projekcija",
+            cascade = CascadeType.MERGE    )
+    private List<Rezervacija> rezervacije;
 
     public int getIdprojekcija() {
         return idprojekcija;
@@ -103,12 +114,6 @@ private int preostaoBrojMesta;
                 ", sala=" + sala.getNaziv() +
                 '}';
     }
-
-
-
-    @OneToMany(mappedBy="projekcija",
-            cascade = CascadeType.MERGE    )
-    private List<Rezervacija> rezervacije;
 
 
     public List<Rezervacija> getRezervacije() {

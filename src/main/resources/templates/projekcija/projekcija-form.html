@@ -36,8 +36,10 @@
         <input type="text" th:field="*{preostaoBrojMesta} "
                class="form-control mb-4 col-5" placeholder="broj mesta" readonly>
 
-        <input type="date"  pattern="yyyy-MM-dd" th:field="*{datum}"
+      <div class="row">  <input type="date"  pattern="yyyy-MM-dd" th:field="*{datum}"
                class="form-control mb-4 col-5" placeholder="datum projekcije">
+          <span class="validationError col" th:if="${#fields.hasErrors('datum')}" th:errors="*{datum}"> Error</span>
+</div>
         <input type="time" th:field="*{vreme}"
                class="form-control mb-4 col-5" placeholder="vreme projekcije">
 

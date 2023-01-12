@@ -1,5 +1,8 @@
 package com.example.projekatbioskop.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 
 import javax.persistence.Table;
@@ -26,10 +29,13 @@ public class Sala {
     @Max(value=1000,message ="ne moze da bude veci od 1000" )
     @Column(name="kapacitet")
     private int kapacitet;
+
+    @JsonBackReference(value="sala-bioskop")
     @ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
             CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name="idbioskop")
     private Bioskop bioskop;
+    @JsonManagedReference(value="sala-projekcija")
     @OneToMany(mappedBy="sala",
             //     cascade= {CascadeType.PERSIST, CascadeType.MERGE,
             //        CascadeType.DETACH, CascadeType.REFRESH}
