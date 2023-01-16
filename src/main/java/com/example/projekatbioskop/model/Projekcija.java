@@ -4,14 +4,16 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.persistence.*;
 import javax.validation.constraints.Future;
+import javax.validation.constraints.NotBlank;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.springframework.data.rest.core.annotation.RestResource;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
+@RestResource(path ="projections",rel = "projections")
 @Entity
 @Table(name="projekcija")
 public class Projekcija {
@@ -31,7 +33,8 @@ public class Projekcija {
     @Temporal(TemporalType.DATE)
     private Date datum;
 
-    @Column(name="vreme")
+   @NotBlank(message = "vreme je obavezno polje")
+   @Column(name="vreme")
     private String vreme;
 @Column(name="preostao_broj_mesta")
 private int preostaoBrojMesta;

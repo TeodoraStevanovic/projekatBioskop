@@ -30,31 +30,36 @@
 
     <form style="margin-left:200px" action="#" th:action="@{/projekcija/save}" th:object="${project}" method="POST">
           <input type="hidden" th:field="*{idprojekcija}" />
-
-     <input type="text" th:field="*{brojMesta}"
+        <div class="row">
+        <input type="text" th:field="*{brojMesta}"
                  class="form-control mb-4 col-5" placeholder="broj mesta" readonly>
+        </div>
+        <div class="row">
         <input type="text" th:field="*{preostaoBrojMesta} "
                class="form-control mb-4 col-5" placeholder="broj mesta" readonly>
-
-      <div class="row">  <input type="date"  pattern="yyyy-MM-dd" th:field="*{datum}"
-               class="form-control mb-4 col-5" placeholder="datum projekcije">
+        </div>
+      <div class="row">  <input type="date" required pattern="yyyy-MM-dd" th:field="*{datum}" class="form-control mb-4 col-5" placeholder="datum projekcije">
           <span class="validationError col" th:if="${#fields.hasErrors('datum')}" th:errors="*{datum}"> Error</span>
 </div>
+        <div class="row">
         <input type="time" th:field="*{vreme}"
                class="form-control mb-4 col-5" placeholder="vreme projekcije">
-
+            <span class="validationError col" th:if="${#fields.hasErrors('vreme')}" th:errors="*{vreme}"> Error</span>
+        </div>
+        <div class="row">
         <select class="form-control mb-4 col-5"  th:field="*{film}">
             <option th:each="movie : ${movies}"
                     th:value="${movie.getIdfilm()}"
                     th:text="${movie.getNaziv()}"></option>
         </select >
-
+        </div>
+        <div class="row">
         <select class="form-control mb-4 col-5"  th:field="*{sala}">
             <option th:each="sala : ${sale}"
                     th:value="${sala.idsala}"
                     th:text="${sala.getNaziv()}+' - '+${sala.bioskop.nazivbioskopa}"></option>
         </select>
-
+        </div>
         <br>
 
         <button  style="background-color: #ff7300" type="submit" class="btn btn-info col-4">Sacuvaj</button>

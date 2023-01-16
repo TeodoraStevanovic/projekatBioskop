@@ -1,11 +1,14 @@
 package com.example.projekatbioskop.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.springframework.data.rest.core.annotation.RestResource;
+
 import javax.validation.constraints.*;
 import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+@RestResource(path ="movies",rel = "movies")
 
 @Entity
 @Table(name="film")

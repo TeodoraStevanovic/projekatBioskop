@@ -40,8 +40,9 @@
         <input type="text" th:field="*{username}" class="form-control mb-4 col-4" placeholder="username">
     <span class="validationError col" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"> Error</span>
     </div>
-
+    <div class="row">
         <input type="text" th:field="*{password}" class="form-control mb-4 col-4" placeholder="password" readonly>
+    </div>
         <div class="row">
             <input type="text" th:value="${newPassword}" th:name="newPassword" class="form-control mb-4 col-4" placeholder="password" >
     <span class="validationError col" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"> Error</span>
@@ -57,10 +58,10 @@
            class="form-control mb-4 col-4" placeholder="broj telefona">
     <span class="validationError col" th:if="${#fields.hasErrors('brojTelefona')}" th:errors="*{brojTelefona}"> Error</span>
         </div>
-
+<div class="row">
             <input type="text" th:field="*{uloga}"
            class="form-control mb-4 col-4" placeholder="uloga" readonly>
-
+    </div>
     <button  style="background-color: #ff7300" type="submit" class="btn btn-info col-2">Sacuvaj</button>
 
 </form>

@@ -1,12 +1,13 @@
 package com.example.projekatbioskop.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.springframework.data.rest.core.annotation.RestResource;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.Date;
-
+@RestResource(path ="reservations",rel = "reservations")
 @Entity
 @Table(name="rezervacije")
 public class Rezervacija {

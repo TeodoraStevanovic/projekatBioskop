@@ -1,6 +1,8 @@
 package com.example.projekatbioskop.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import lombok.Data;
+import org.springframework.data.rest.core.annotation.RestResource;
 
 import javax.persistence.*;
 import javax.validation.constraints.*;
@@ -10,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+@RestResource(path ="cinemas",rel = "cinemas")
 @Entity
 @Table(name="bioskop")
 public class Bioskop {
