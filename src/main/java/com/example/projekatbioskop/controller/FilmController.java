@@ -4,7 +4,6 @@ package com.example.projekatbioskop.controller;
 
 import com.example.projekatbioskop.model.Film;
 import com.example.projekatbioskop.model.Projekcija;
-import com.example.projekatbioskop.model.Sala;
 import com.example.projekatbioskop.service.FilmService;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;

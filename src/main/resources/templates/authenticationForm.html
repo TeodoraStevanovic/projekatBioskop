@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+
+    <title>AuthenticationForm</title>
+</head>
+<body>
+<h1>Authentication</h1>
+<!--
+""
+-->
+<form  method="POST" th:action="@{/authform}" id="auth">
+
+    <div th:if="${param.logout}"><div class="alert alert-info">You have been logged out.</div></div>
+    <label for="username">Username: </label>
+    <input type="text"  class="form-control mb-2 col-7" name="username" id="username" /><br/>
+
+    <label for="password">Password: </label>
+    <input  class="form-control mb-2 col-7" type="password" name="password" id="password" /><br/>
+
+    <input class="col-7" type="submit" value="Authenticate"/>
+    <br>
+</form>
+</body>
+</html>

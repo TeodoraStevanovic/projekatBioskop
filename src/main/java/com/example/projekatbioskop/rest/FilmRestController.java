@@ -1,5 +1,6 @@
 package com.example.projekatbioskop.rest;
 
+import com.example.projekatbioskop.interceptor.BearerTokenWrapper;
 import com.example.projekatbioskop.model.Film;
 import com.example.projekatbioskop.repository.FilmRepository;
 import com.example.projekatbioskop.service.FilmService;
@@ -18,12 +19,18 @@ public class FilmRestController {
     private FilmService filmService;
 @Autowired private FilmRepository filmRepository;
 
-   public FilmRestController(FilmService filmService) {
-       this.filmService = filmService;}
+    private BearerTokenWrapper tokenWrapper;
 
-   @GetMapping("/movies")
+    public FilmRestController(FilmService filmService, BearerTokenWrapper tokenWrapper) {
+        this.filmService = filmService;
+        this.tokenWrapper = tokenWrapper;
+    }
+
+    @GetMapping("/movies")
     public List<Film> listFilms() {
-         return filmService.findAll();
+
+        System.out.println("token=" + tokenWrapper.getToken());
+        return filmService.findAll();
     }
 //prva verzija-radi
     /*

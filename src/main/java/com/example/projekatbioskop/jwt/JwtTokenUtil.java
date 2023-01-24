@@ -1,16 +1,15 @@
 package com.example.projekatbioskop.jwt;
 import java.io.Serializable;
-import java.security.Key;
+
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Function;
-
+import com.example.projekatbioskop.repository.UserRepository;
 import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.io.Decoders;
-import io.jsonwebtoken.io.Encoders;
-import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+
 import org.springframework.security.core.userdetails.UserDetails;
 
 import io.jsonwebtoken.Claims;
@@ -19,12 +18,10 @@ import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
 
-@SuppressWarnings("deprecation")
 @Component
 public class JwtTokenUtil implements Serializable {
 
     private static final long serialVersionUID = -2550185165626007488L;
-
     public static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60;
 
     @Value("${jwt.secret}")
@@ -72,17 +69,21 @@ public class JwtTokenUtil implements Serializable {
                 .setExpiration(new Date(System.currentTimeMillis() + JWT_TOKEN_VALIDITY * 1000))
                 .signWith(SignatureAlgorithm.HS256, secret).compact();
     }
-
+    @Autowired
+    UserRepository userRepository;
     //validate token
     public Boolean validateToken(String token, UserDetails userDetails) {
         final String username = getUsernameFromToken(token);
-        return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
-    }
+     //  Claims claims= getAllClaimsFromToken(token);
+    //  String sub= claims.getSubject();
+     // String username1=  userDetails.getUsername();
+       // User user = userRepository.findByUsername(username1);
+        return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));}
+
     //private Key getSigningKey() {
        // byte[] keyBytes = Decoders.BASE64.decode(this.secret);
-      //  return Keys.hmacShaKeyFor(keyBytes);
-   // }
-    SecretKey key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
-    String secretString = Encoders.BASE64.encode(key.getEncoded());
+      //  return Keys.hmacShaKeyFor(keyBytes);}
+   // SecretKey key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+   // String secretString = Encoders.BASE64.encode(key.getEncoded());
 
 }

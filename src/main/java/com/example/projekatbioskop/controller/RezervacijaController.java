@@ -5,7 +5,6 @@ import com.example.projekatbioskop.security.CustomUserDetails;
 import com.example.projekatbioskop.service.ProjekcijaService;
 import com.example.projekatbioskop.service.RezervacijaService;
 import com.example.projekatbioskop.service.UserService;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
@@ -13,12 +12,8 @@ import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 @Controller
 @RequestMapping("/rezervacija")
@@ -96,7 +91,8 @@ rezervacija.setPlacedAt(LocalDateTime.now());
         if (!StringUtils.isEmpty(lozinka)) {
 
             theUser.setPassword(passwordEncoder.encode(lozinka));
-        }System.out.println(lozinka);
+        }
+        System.out.println(lozinka);
         userService.save(theUser);
         return "redirect:/rezervacija/list";
     }
