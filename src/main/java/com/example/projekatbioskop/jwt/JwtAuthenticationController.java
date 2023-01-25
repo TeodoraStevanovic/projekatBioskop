@@ -2,20 +2,17 @@ package com.example.projekatbioskop.jwt;
 
 
 import com.example.projekatbioskop.model.User;
-
 import com.example.projekatbioskop.service.UserDetailServiceImpl;
 import com.example.projekatbioskop.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
@@ -49,7 +46,7 @@ JwtResponse response=new JwtResponse();
 
         final String token = jwtTokenUtil.generateToken(userDetails);
         response.setJwtToken(token);
-storeTokenInCookie(token,responseEntity);
+        storeTokenInCookie(token,responseEntity);
        // return ResponseEntity.ok(new JwtResponse(token));
        // return ResponseEntity.ok(response);
         return ResponseEntity.ok(response);

@@ -3,10 +3,8 @@ package com.example.projekatbioskop.service;
 import com.example.projekatbioskop.model.Film;
 import com.example.projekatbioskop.repository.FilmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
-import java.net.ContentHandler;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;

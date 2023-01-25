@@ -1,6 +1,5 @@
 package com.example.projekatbioskop.service;
 
-import com.example.projekatbioskop.model.Projekcija;
 import com.example.projekatbioskop.model.Rezervacija;
 import com.example.projekatbioskop.repository.RezervacijaRepository;
 import org.springframework.stereotype.Service;

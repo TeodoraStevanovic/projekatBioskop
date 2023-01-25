@@ -9,7 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.validation.Errors;
-
 import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +29,7 @@ public class AdminController {
     public String adminPanel(Model theModel){
       List<User> users=userService.findAll();
       theModel.addAttribute("users",users);
-      theModel.addAttribute("username",new String());
+      theModel.addAttribute("username", "");
 
       List<Rezervacija> rezervacije=rezervacijaService.findAll();
       theModel.addAttribute("rezervations",rezervacije);

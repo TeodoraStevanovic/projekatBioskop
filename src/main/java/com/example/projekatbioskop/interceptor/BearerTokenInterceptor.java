@@ -18,7 +18,7 @@ public class BearerTokenInterceptor implements HandlerInterceptor {
 
         final String authorizationHeaderValue = request.getHeader("Authorization");
         if (authorizationHeaderValue != null && authorizationHeaderValue.startsWith("Bearer")) {
-            String token = authorizationHeaderValue.substring(7, authorizationHeaderValue.length());
+            String token = authorizationHeaderValue.substring(7);
 
             if (tokenWrapper.getToken() == null || !token.equals(tokenWrapper.getToken())) {
                 tokenWrapper.setToken(token);

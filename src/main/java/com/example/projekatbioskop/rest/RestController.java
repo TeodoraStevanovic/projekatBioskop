@@ -13,4 +13,9 @@ public class RestController {
     public String firstPage() {
         return "Hello World";
     }
+
+    @RequestMapping({ "/hi" })
+    public String secondPage() {
+        return "Hi World";
+    }
 }
